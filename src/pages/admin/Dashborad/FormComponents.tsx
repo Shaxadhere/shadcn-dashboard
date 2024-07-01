@@ -1,8 +1,10 @@
 import FormCheckbox from "@/components/globals/forms/FormCheckbox";
 import FormDateInput from "@/components/globals/forms/FormDateInput";
 import FormRangeInput from "@/components/globals/forms/FormDateInput/FormRangeInput";
+import FormTimeInput from "@/components/globals/forms/FormDateInput/FormTimeInput";
 import FormInput from "@/components/globals/forms/FormInput";
 import FormRadio from "@/components/globals/forms/FormRadio";
+import FormRichText from "@/components/globals/forms/FormRichText";
 import FormSelect from "@/components/globals/forms/FormSelect";
 import FormSearchSelect from "@/components/globals/forms/FormSelect/FormSearchSelect";
 import FormSwitch from "@/components/globals/forms/FormSwitch";
@@ -68,6 +70,12 @@ const FormComponents = () => {
         <div className="flex gap-5 flex-col">
           <FormInput control={form.control} />
           <FormDateInput control={form.control} />
+          <FormRangeInput control={form.control} />
+          <FormTimeInput
+            control={form.control}
+            setDate={(e) => console.log(e)}
+            date={new Date()}
+          />
           <FormRadio control={form.control} />
           <FormSelect control={form.control} />
           <FormSwitchCard control={form.control} />
@@ -91,9 +99,11 @@ const FormComponents = () => {
             ]}
           />
           <FormCheckbox control={form.control} />
-          <FormRangeInput control={form.control} />
-        </div>
 
+          <FormRichText
+          
+          />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>
