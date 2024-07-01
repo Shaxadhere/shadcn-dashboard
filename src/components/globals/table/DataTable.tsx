@@ -22,15 +22,26 @@ import {
 import { useState } from "react";
 import { Pagination } from "./Pagination";
 import { ColumnVisibility } from "./ColumnVisibility";
+import TableEmpty from "./TableEmpty";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onQueryChange?: ({}: any) => void;
+  query?: Object;
+  searchKey?: string;
+  searchPlaceholder?: string;
+  totalRecords: number;
 }
 
 const DataTable = <TData, TValue>({
   columns,
   data,
+  onQueryChange,
+  query = {},
+  searchKey = "search",
+  searchPlaceholder = "Type to search...",
+  totalRecords,
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -42,12 +53,21 @@ const DataTable = <TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    onSortingChange: (sort) => {
+      const newSortVal = sort(sorting);
+      setSorting(sort);
+      onQueryChange && onQueryChange({ sort: newSortVal });
+    },
+    rowCount: totalRecords,
+    manualPagination: true,
+    manualSorting: true,
+    manualFiltering: true,
+    debugTable: true,
     state: {
       sorting,
       columnFilters,
@@ -60,10 +80,10 @@ const DataTable = <TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder={searchPlaceholder}
+          value={query[searchKey] ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            onQueryChange && onQueryChange({ [searchKey]: event.target.value })
           }
           className="max-w-sm"
         />
@@ -107,20 +127,13 @@ const DataTable = <TData, TValue>({
                 </TableRow>
               ))
             ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
+              <TableEmpty columnsLength={columns.length} />
             )}
           </TableBody>
         </Table>
       </div>
 
-      <Pagination table={table} />
+      <Pagination table={table} onQueryChange={onQueryChange} query={query} />
     </div>
   );
 };

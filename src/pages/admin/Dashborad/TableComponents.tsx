@@ -40,7 +40,31 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "status",
+    header: ({ column }) => <ColumnHeader column={column} title="Status" />,
+    enableSorting: true,
+  },
+  {
+    accessorKey: "email",
+    header: ({ column }) => <ColumnHeader column={column} title="Email" />,
+    enableSorting: true,
+  },
+  {
+    accessorKey: "amount",
+    header: ({ column }) => <ColumnHeader column={column} title="Amount" />,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"));
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
     id: "actions",
+    header: ({ column }) => <ColumnHeader column={column} title="Action" />,
     cell: ({ row }) => {
       const payment = row.original;
       return (
@@ -66,31 +90,6 @@ export const columns: ColumnDef<Payment>[] = [
       );
     },
   },
-  {
-    accessorKey: "status",
-    header: ({ column }) => <ColumnHeader column={column} title="Status" />,
-    enableSorting: true,
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => <ColumnHeader column={column} title="Email" />,
-    enableSorting: true,
-  },
-  {
-    accessorKey: "amount",
-    header: ({ column }) => (
-      <ColumnHeader column={column} title="Amount" className="justify-end" />
-    ),
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  },
 ];
 
 async function getData(): Promise<Payment[]> {
@@ -99,6 +98,14 @@ async function getData(): Promise<Payment[]> {
 
 const TableComponents = () => {
   const [data, setData] = useState<Payment[]>([]);
+  const [query, setQuery] = useState({});
+
+  const onQueryChange = (updatedQuery: any) => {
+    setQuery((prev) => ({
+      ...prev,
+      ...updatedQuery,
+    }));
+  };
 
   useEffect(() => {
     getData().then((data) => setData(data));
@@ -106,7 +113,14 @@ const TableComponents = () => {
 
   return (
     <div className="w-[100%] py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable
+        columns={columns}
+        data={data}
+        totalRecords={200}
+        onQueryChange={onQueryChange}
+        query={query}
+      />
+      <p>{JSON.stringify(query, undefined, 2)}</p>
     </div>
   );
 };

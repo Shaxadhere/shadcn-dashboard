@@ -13,7 +13,7 @@ type Props = {
 
 const Sider = ({ toggleSider, isSiderOpen }: Props) => {
   return (
-    <div className="hidden border-r bg-muted/40 md:block">
+    <div className="hidden border-r bg-muted/40 md:block h-[100vh]">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div
           className={classNames(
