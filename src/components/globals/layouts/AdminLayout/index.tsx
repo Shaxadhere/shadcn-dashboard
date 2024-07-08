@@ -7,18 +7,11 @@ import useBoolean from "@/hooks/useBoolean";
 const AdminLayout = () => {
   const { toggle: toggleSider, value: isSiderOpen } = useBoolean(true);
   return (
-    <div
-      className={classNames(
-        "grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]",
-        {
-          "md:grid-cols-[60px_1fr] lg:grid-cols-[60px_1fr]": !isSiderOpen,
-        }
-      )}
-    >
+    <div className={classNames("min-h-screen w-full")}>
       <Sider toggleSider={toggleSider} isSiderOpen={isSiderOpen} />
-      <div className="flex flex-col">
+      <div>
         <Header toggleSider={toggleSider} isSiderOpen={isSiderOpen} />
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+        <main className="h-[calc(100vh-60px)] overflow-y-auto absolute top-[60px] left-[280px] w-[calc(100vw-280px)] p-[30px]">
           <Outlet />
         </main>
       </div>

@@ -7,6 +7,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import {
   FormControl,
@@ -48,7 +49,7 @@ const FormSearchSelect = ({ control, setValue, options }: Props) => {
                   )}
                 >
                   {field?.value
-                    ? options.find((option) => option.value === field?.value)
+                    ? options?.find((option) => option.value === field?.value)
                         ?.label
                     : "Select option"}
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -56,30 +57,32 @@ const FormSearchSelect = ({ control, setValue, options }: Props) => {
               </FormControl>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">
-              <Command>
-                <CommandInput placeholder="Search option..." />
-                <CommandEmpty>No option found.</CommandEmpty>
-                <CommandGroup>
-                  {options?.map((option) => (
-                    <CommandItem
-                      value={option.label}
-                      key={option.value}
-                      onSelect={() => {
-                        setValue("option", option.value);
-                      }}
-                    >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          option.value === field?.value
-                            ? "opacity-100"
-                            : "opacity-0"
-                        )}
-                      />
-                      {option.label}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
+              <Command className="rounded-lg border shadow-md">
+                <CommandInput placeholder="Type to search..." />
+                <CommandList>
+                  <CommandEmpty>No option found.</CommandEmpty>
+                  <CommandGroup heading="Suggestions">
+                    {options?.map((option) => (
+                      <CommandItem
+                        value={option.label}
+                        key={option.value}
+                        onSelect={() => {
+                          setValue("option", option.value);
+                        }}
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            option.value === field?.value
+                              ? "opacity-100"
+                              : "opacity-0"
+                          )}
+                        />
+                        {option.label}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
               </Command>
             </PopoverContent>
           </Popover>

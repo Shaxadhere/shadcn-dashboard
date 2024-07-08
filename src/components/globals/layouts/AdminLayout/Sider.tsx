@@ -13,7 +13,7 @@ type Props = {
 
 const Sider = ({ toggleSider, isSiderOpen }: Props) => {
   return (
-    <div className="hidden border-r bg-muted/40 md:block h-[100vh]">
+    <div className="hidden border-r bg-muted/40 md:block h-[100vh] absolute top-[0px] left-[0px] w-[280px]">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div
           className={classNames(
@@ -42,7 +42,7 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
         <div className="flex-1">
           <nav
             className={classNames(
-              "grid items-start px-2 text-sm font-medium lg:px-4  gap-1",
+              "items-start px-2 text-sm font-medium lg:px-4  gap-1",
               {
                 "lg:px-2": !isSiderOpen,
               },

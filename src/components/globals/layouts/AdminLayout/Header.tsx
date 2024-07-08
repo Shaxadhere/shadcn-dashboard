@@ -29,6 +29,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import ComboSearchInput from "../../popovers/ComboSearchInput";
+import HeaderMenu from "./HeaderMenu";
+import NavBottomCard from "./NavBottomCard";
+import useBreadcrumbs from "@/hooks/useBreadcrumbs";
+import AppBreadcrumbs from "./AppBreadcrumbs";
 
 type Props = {
   toggleSider: () => void;
@@ -37,7 +42,7 @@ type Props = {
 
 const Header = ({ toggleSider, isSiderOpen }: Props) => {
   return (
-    <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-3">
+    <header className="flex border-b bg-muted/40 px-4 h-[60px] lg:px-3 justify-between absolute items-center top-[0px] left-[280px] w-[calc(100vw-280px)]">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -93,22 +98,7 @@ const Header = ({ toggleSider, isSiderOpen }: Props) => {
               Analytics
             </Link>
           </nav>
-          <div className="mt-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle>Upgrade to Pro</CardTitle>
-                <CardDescription>
-                  Unlock all features and get unlimited access to our support
-                  team.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button size="sm" className="w-full">
-                  Upgrade
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+          <NavBottomCard />
         </SheetContent>
       </Sheet>
       {!isSiderOpen && (
@@ -124,34 +114,15 @@ const Header = ({ toggleSider, isSiderOpen }: Props) => {
           </Button>
         </div>
       )}
-      <div className="w-full flex-1">
-        <form>
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search products..."
-              className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-            />
-          </div>
-        </form>
+      <AppBreadcrumbs />
+      <div className="flex gap-3 items-center">
+        <div className="w-full  w-[260px]">
+          <form>
+            <ComboSearchInput openClassName={"top-[132.5px] z-10"} />
+          </form>
+        </div>
+        <HeaderMenu />
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <CircleUser className="h-5 w-5" />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </header>
   );
 };

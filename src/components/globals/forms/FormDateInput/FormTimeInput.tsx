@@ -10,7 +10,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Clock } from "lucide-react";
 
-const FormTimeInput = () => {
+interface Props {
+  control: any;
+  setDate: any;
+  date: any;
+}
+
+const FormTimeInput = ({ control, setDate, date }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
 

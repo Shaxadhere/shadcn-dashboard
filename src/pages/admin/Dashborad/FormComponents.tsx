@@ -4,7 +4,6 @@ import FormRangeInput from "@/components/globals/forms/FormDateInput/FormRangeIn
 import FormTimeInput from "@/components/globals/forms/FormDateInput/FormTimeInput";
 import FormInput from "@/components/globals/forms/FormInput";
 import FormRadio from "@/components/globals/forms/FormRadio";
-import FormRichText from "@/components/globals/forms/FormRichText";
 import FormSelect from "@/components/globals/forms/FormSelect";
 import FormSearchSelect from "@/components/globals/forms/FormSelect/FormSearchSelect";
 import FormSwitch from "@/components/globals/forms/FormSwitch";
@@ -99,10 +98,6 @@ const FormComponents = () => {
             ]}
           />
           <FormCheckbox control={form.control} />
-
-          <FormRichText
-          
-          />
         </div>
         <Button type="submit">Submit</Button>
       </form>
