@@ -3,9 +3,9 @@ import SiderItem from "./SiderItem";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import QuickActionCard from "../../cards/QuickActionCard";
-import classNames from "classnames";
 import { menus } from "@/constants/menus";
 import { cn } from "@/lib/utils";
+import SiderContent from "./SiderContent";
 
 type Props = {
   toggleSider: () => void;
@@ -24,7 +24,7 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
     >
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div
-          className={classNames(
+          className={cn(
             "flex h-14 items-center justify-center border-b px-4 lg:h-[60px] lg:px-6",
             {
               "lg:px-2": !isSiderOpen,
@@ -33,7 +33,7 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
         >
           <Link to="/" className="flex items-center gap-2 font-semibold">
             <Package2 className="h-6 w-6" />
-            {isSiderOpen && <span className="">Acme Inc</span>}
+            {isSiderOpen && <span className="">Shadcn Dashboard</span>}
           </Link>
           {isSiderOpen && (
             <Button
@@ -47,20 +47,7 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
             </Button>
           )}
         </div>
-        <div className="flex-1">
-          <nav
-            className={classNames(
-              "flex flex-col justify-start px-2 text-sm font-medium lg:px-4 gap-1",
-              {
-                "lg:px-2 justify-center gap-2": !isSiderOpen,
-              }
-            )}
-          >
-            {menus.map((menu, index) => (
-              <SiderItem {...menu} isSiderOpen={isSiderOpen} key={index} />
-            ))}
-          </nav>
-        </div>
+        <SiderContent isSiderOpen />
         {isSiderOpen && (
           <div className="mt-auto p-4">
             <QuickActionCard

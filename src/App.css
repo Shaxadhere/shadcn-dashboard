@@ -32,3 +32,14 @@
 * {
   transition: all 0.2s ease-in-out;
 }
+
+/* animated tabs */
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}

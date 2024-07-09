@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import FormComponents from "./FormComponents";
 import TableComponents from "./TableComponents";
 import Popovers from "./Popovers";
+import TabsComponents from "./Tabs";
 
 const Dashboard = () => {
   return (
@@ -38,6 +39,11 @@ const Dashboard = () => {
       <div>
         <h1 className="mb-2 text-lg font-bold">Popovers</h1>
         <Popovers />
+      </div>
+
+      <div>
+        <h1 className="mb-2 text-lg font-bold">Tabs Components</h1>
+        <TabsComponents />
       </div>
 
       <div className="mt-10">
