@@ -18,9 +18,11 @@ const SiderItem = ({ label, icon, link, count, isSiderOpen }: Props) => {
     <Link
       to={link}
       className={classNames(
-        "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
+        "flex items-center  rounded-lg text-muted-foreground transition-all hover:text-primary",
         {
           "bg-muted text-primary": isActive,
+          "px-1 py-2 justify-center": !isSiderOpen,
+          "px-3 py-2 gap-3 justify-left": isSiderOpen,
         }
       )}
     >

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import QuickActionCard from "../../cards/QuickActionCard";
 import classNames from "classnames";
 import { menus } from "@/constants/menus";
+import { cn } from "@/lib/utils";
 
 type Props = {
   toggleSider: () => void;
@@ -13,7 +14,14 @@ type Props = {
 
 const Sider = ({ toggleSider, isSiderOpen }: Props) => {
   return (
-    <div className="hidden border-r bg-muted/40 md:block h-[100vh] absolute top-[0px] left-[0px] w-[280px]">
+    <div
+      className={cn(
+        "hidden border-r bg-muted/40 md:block h-[100vh] absolute top-[0px] left-[0px] w-[280px]",
+        {
+          "w-[70px]": !isSiderOpen,
+        }
+      )}
+    >
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div
           className={classNames(
@@ -42,12 +50,9 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
         <div className="flex-1">
           <nav
             className={classNames(
-              "items-start px-2 text-sm font-medium lg:px-4  gap-1",
+              "flex flex-col justify-start px-2 text-sm font-medium lg:px-4 gap-1",
               {
-                "lg:px-2": !isSiderOpen,
-              },
-              {
-                "justify-center": !isSiderOpen,
+                "lg:px-2 justify-center gap-2": !isSiderOpen,
               }
             )}
           >

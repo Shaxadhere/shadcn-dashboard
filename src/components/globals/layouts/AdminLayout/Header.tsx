@@ -34,6 +34,7 @@ import HeaderMenu from "./HeaderMenu";
 import NavBottomCard from "./NavBottomCard";
 import useBreadcrumbs from "@/hooks/useBreadcrumbs";
 import AppBreadcrumbs from "./AppBreadcrumbs";
+import { cn } from "@/lib/utils";
 
 type Props = {
   toggleSider: () => void;
@@ -42,7 +43,15 @@ type Props = {
 
 const Header = ({ toggleSider, isSiderOpen }: Props) => {
   return (
-    <header className="flex border-b bg-muted/40 px-4 h-[60px] lg:px-3 justify-between absolute items-center top-[0px] left-[280px] w-[calc(100vw-280px)]">
+    <header
+      className={cn(
+        "flex border-b bg-muted/40 px-4 h-[60px] lg:px-3 justify-between absolute items-center top-[0px]",
+        {
+          "left-[70px] w-[calc(100vw-70px)]": !isSiderOpen,
+          "left-[280px] w-[calc(100vw-280px)]": isSiderOpen,
+        }
+      )}
+    >
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -101,22 +110,24 @@ const Header = ({ toggleSider, isSiderOpen }: Props) => {
           <NavBottomCard />
         </SheetContent>
       </Sheet>
-      {!isSiderOpen && (
-        <div>
-          <Button
-            onClick={toggleSider}
-            variant="outline"
-            size="icon"
-            className="ml-auto h-8 w-8"
-          >
-            <Menu className="h-4 w-4" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </div>
-      )}
-      <AppBreadcrumbs />
+      <div className="flex items-center gap-3">
+        {!isSiderOpen && (
+          <div>
+            <Button
+              onClick={toggleSider}
+              variant="outline"
+              size="icon"
+              className="ml-auto h-8 w-8"
+            >
+              <Menu className="h-4 w-4" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </div>
+        )}
+        <AppBreadcrumbs />
+      </div>
       <div className="flex gap-3 items-center">
-        <div className="w-full  w-[260px]">
+        <div className="w-full w-[260px]">
           <form>
             <ComboSearchInput openClassName={"top-[132.5px] z-10"} />
           </form>
