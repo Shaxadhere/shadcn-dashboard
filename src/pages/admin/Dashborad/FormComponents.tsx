@@ -3,6 +3,7 @@ import FormDateInput from "@/components/globals/forms/FormDateInput";
 import FormRangeInput from "@/components/globals/forms/FormDateInput/FormRangeInput";
 // import FormTimeInput from "@/components/globals/forms/FormDateInput/FormTimeInput";
 import FormInput from "@/components/globals/forms/FormInput";
+import FormPinInput from "@/components/globals/forms/FormPinInput";
 import FormRadio from "@/components/globals/forms/FormRadio";
 import FormSelect from "@/components/globals/forms/FormSelect";
 import FormSearchSelect from "@/components/globals/forms/FormSelect/FormSearchSelect";
@@ -46,6 +47,9 @@ const formSchema = z.object({
   items: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one item.",
   }),
+  pin: z.string().min(6, {
+    message: "Your one-time password must be 6 characters.",
+  }),
 });
 
 const FormComponents = () => {
@@ -76,6 +80,15 @@ const FormComponents = () => {
               label="Username"
               placeholder="Shadcn"
             />
+
+            <FormPinInput
+              control={form.control}
+              name="pin"
+              count={5}
+              hint="Please enter the one-time password sent to your phone."
+              label="One-Time Password"
+            />
+
             <FormDateInput
               control={form.control}
               name="dob"
@@ -83,16 +96,19 @@ const FormComponents = () => {
               label="Date of Birth"
               placeholder="Pick a date"
             />
+
             <FormRangeInput
               control={form.control}
               name="range"
               label="Range Input"
             />
+
             {/* <FormTimeInput
               control={form.control}
               setDate={(e) => console.log(e)}
               date={new Date()}
             /> */}
+
             <FormRadio
               control={form.control}
               name="type"
@@ -103,6 +119,7 @@ const FormComponents = () => {
                 { label: "Nothing", value: "none" },
               ]}
             />
+
             <FormSelect
               name="email"
               hint="This will be your public username."
@@ -160,6 +177,7 @@ const FormComponents = () => {
               ]}
               hint="This is the option that will be used in the dashboard."
             />
+
             <FormCheckbox
               control={form.control}
               name="items"
