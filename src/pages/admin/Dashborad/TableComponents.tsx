@@ -112,15 +112,21 @@ const TableComponents = () => {
   }, []);
 
   return (
-    <div className="w-[100%] py-10">
-      <DataTable
-        columns={columns}
-        data={data}
-        totalRecords={200}
-        onQueryChange={onQueryChange}
-        query={query}
-      />
-      <p>{JSON.stringify(query, undefined, 2)}</p>
+    <div className="mt-10">
+      <h1 className="mb-2 text-lg font-bold">Data Table</h1>
+      <div className="w-full">
+        <DataTable
+          columns={columns}
+          data={data}
+          totalRecords={200}
+          onQueryChange={onQueryChange}
+          query={query}
+        />
+        <h5 className="mt-8 text-sm">Table State</h5>
+        <p className="mt-2 text-sm text-gray-500 bg-gray-100 min-h-[100px]">
+          {JSON.stringify(query, undefined, 2)}
+        </p>
+      </div>
     </div>
   );
 };

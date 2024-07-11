@@ -27,8 +27,18 @@
   background: rgb(150, 150, 150);
 }
 
-/* transition on all elements */
+/* transitions */
+.ease {
+  transition: all 0.2s ease;
+}
 
-* {
-  transition: all 0.2s ease-in-out;
+/* animated tabs */
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
 }

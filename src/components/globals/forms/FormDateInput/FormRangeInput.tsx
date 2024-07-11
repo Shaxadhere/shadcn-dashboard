@@ -17,6 +17,8 @@ type Props = {
   className?: React.HTMLAttributes<HTMLDivElement>;
   control: any;
   defaultValue?: DateRange;
+  name: string;
+  label?: string;
 };
 
 const FormRangeInput = ({
@@ -26,16 +28,18 @@ const FormRangeInput = ({
     from: new Date(2022, 0, 20),
     to: addDays(new Date(2022, 0, 20), 20),
   },
+  name,
+  label,
 }: Props) => {
   const { field } = useController({
-    name: "range",
+    name,
     control,
     defaultValue,
   });
 
   return (
     <FormItem className="flex flex-col">
-      <FormLabel>Date of birth</FormLabel>
+      <FormLabel>{label}</FormLabel>
       <div className={cn("grid gap-2", className)}>
         <Popover>
           <PopoverTrigger asChild>

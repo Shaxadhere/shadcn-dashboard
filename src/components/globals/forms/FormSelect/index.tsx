@@ -13,36 +13,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Link } from "react-router-dom";
 
 type Props = {
   control: any;
+  options?: { label: string; value: any }[];
+  name: string;
+  hint?: string;
+  placeholder?: string;
+  label?: string;
 };
 
-const FormSelect = ({ control }: Props) => {
+const FormSelect = ({
+  control,
+  options = [],
+  name,
+  hint,
+  placeholder = "Select",
+  label,
+}: Props) => {
   return (
     <FormField
       control={control}
-      name="email"
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Email</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
-                <SelectValue placeholder="Select a verified email to display" />
+                <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              <SelectItem value="m@example.com">m@example.com</SelectItem>
-              <SelectItem value="m@google.com">m@google.com</SelectItem>
-              <SelectItem value="m@support.com">m@support.com</SelectItem>
+              {options?.map((item, index) => (
+                <SelectItem key={index} value={item.value}>
+                  {item.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
-          <FormDescription>
-            You can manage email addresses in your{" "}
-            <Link to="/examples/forms">email settings</Link>.
-          </FormDescription>
+          <FormDescription>{hint}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

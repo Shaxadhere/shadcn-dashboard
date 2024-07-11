@@ -19,16 +19,20 @@ import {
 
 type Props = {
   control: any;
+  label?: string;
+  placeholder?: string;
+  hint?: string;
+  name: string;
 };
 
-const FormDateInput = ({ control }: Props) => {
+const FormDateInput = ({ control, label, placeholder, hint, name }: Props) => {
   return (
     <FormField
       control={control}
-      name="dob"
+      name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>Date of birth</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -42,7 +46,7 @@ const FormDateInput = ({ control }: Props) => {
                   {field.value ? (
                     format(field.value, "PPP")
                   ) : (
-                    <span>Pick a date</span>
+                    <span>{placeholder}</span>
                   )}
                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
@@ -60,9 +64,7 @@ const FormDateInput = ({ control }: Props) => {
               />
             </PopoverContent>
           </Popover>
-          <FormDescription>
-            Your date of birth is used to calculate your age.
-          </FormDescription>
+          <FormDescription>{hint}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

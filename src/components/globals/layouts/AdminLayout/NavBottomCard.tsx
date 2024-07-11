@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import React from "react";
-import { Button } from "react-day-picker";
+import { Button } from "@/components/ui/button";
 
 interface Props {}
 

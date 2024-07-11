@@ -37,45 +37,47 @@ const items = [
 
 type Props = {
   control: any;
+  options: { label: string; value: any }[];
+  name: string;
+  hint?: string;
+  label?: string;
 };
 
-const FormCheckbox = ({ control }: Props) => {
+const FormCheckbox = ({ control, name, options = [], hint, label }: Props) => {
   return (
     <FormField
       control={control}
-      name="items"
+      name={name}
       render={() => (
         <FormItem>
           <div className="mb-4">
-            <FormLabel className="text-base">Sidebar</FormLabel>
-            <FormDescription>
-              Select the items you want to display in the sidebar.
-            </FormDescription>
+            <FormLabel className="text-base">{label}</FormLabel>
+            <FormDescription>{hint}</FormDescription>
           </div>
-          {items.map((item) => (
+          {options.map((item) => (
             <FormField
-              key={item.id}
+              key={item.value}
               control={control}
-              name="items"
+              name={name}
               render={({ field }) => {
                 return (
                   <FormItem
-                    key={item.id}
+                    key={item.value}
                     className="flex flex-row items-start space-x-3 space-y-0"
                   >
                     <FormControl>
                       <Checkbox
-                        checked={field?.value?.includes(item.id)}
+                        checked={field?.value?.includes(item.value)}
                         onCheckedChange={(checked) => {
                           return checked
                             ? field.onChange(
                                 Array.isArray(field?.value)
-                                  ? [...field?.value, item.id]
-                                  : [item.id]
+                                  ? [...field?.value, item.value]
+                                  : [item.value]
                               )
                             : field.onChange(
                                 field?.value?.filter(
-                                  (value: any) => value !== item.id
+                                  (value: any) => value !== item.value
                                 )
                               );
                         }}

@@ -1,7 +1,7 @@
 import FormCheckbox from "@/components/globals/forms/FormCheckbox";
 import FormDateInput from "@/components/globals/forms/FormDateInput";
 import FormRangeInput from "@/components/globals/forms/FormDateInput/FormRangeInput";
-import FormTimeInput from "@/components/globals/forms/FormDateInput/FormTimeInput";
+// import FormTimeInput from "@/components/globals/forms/FormDateInput/FormTimeInput";
 import FormInput from "@/components/globals/forms/FormInput";
 import FormRadio from "@/components/globals/forms/FormRadio";
 import FormSelect from "@/components/globals/forms/FormSelect";
@@ -64,44 +64,121 @@ const FormComponents = () => {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex gap-5 flex-col">
-          <FormInput control={form.control} />
-          <FormDateInput control={form.control} />
-          <FormRangeInput control={form.control} />
-          <FormTimeInput
-            control={form.control}
-            setDate={(e) => console.log(e)}
-            date={new Date()}
-          />
-          <FormRadio control={form.control} />
-          <FormSelect control={form.control} />
-          <FormSwitchCard control={form.control} />
-          <div className="max-w-[250px]">
-            <FormSwitch control={form.control} />
+    <div>
+      <h1 className="mb-2 text-lg font-bold">Forms</h1>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <div className="flex gap-5 flex-col">
+            <FormInput
+              control={form.control}
+              name="username"
+              hint="This will be your public username"
+              label="Username"
+              placeholder="Shadcn"
+            />
+            <FormDateInput
+              control={form.control}
+              name="dob"
+              hint="Your date of birth is used to calculate your age."
+              label="Date of Birth"
+              placeholder="Pick a date"
+            />
+            <FormRangeInput
+              control={form.control}
+              name="range"
+              label="Range Input"
+            />
+            {/* <FormTimeInput
+              control={form.control}
+              setDate={(e) => console.log(e)}
+              date={new Date()}
+            /> */}
+            <FormRadio
+              control={form.control}
+              name="type"
+              label="Notify me about"
+              options={[
+                { label: "All new messages", value: "all" },
+                { label: "Direct messages and mentions", value: "mentions" },
+                { label: "Nothing", value: "none" },
+              ]}
+            />
+            <FormSelect
+              name="email"
+              hint="This will be your public username."
+              label="Email"
+              placeholder="Select an email to display"
+              control={form.control}
+              options={[
+                { label: "Option 1", value: "1" },
+                { label: "Option 2", value: "2" },
+                { label: "Option 3", value: "3" },
+                { label: "Option 4", value: "4" },
+                { label: "Option 5", value: "5" },
+              ]}
+            />
+
+            <FormSwitchCard
+              title="Marketing emails?"
+              hint="Receive emails about new products, features, and more."
+              control={form.control}
+              name="marketing_emails"
+            />
+
+            <div className="max-w-[250px]">
+              <FormSwitch
+                control={form.control}
+                name="security_emails"
+                label="Security emails?"
+              />
+            </div>
+
+            <FormTextarea
+              control={form.control}
+              name="bio"
+              hint="Tell us about yourself in 160 characters or less."
+              label="Bio"
+              placeholder="I'm a software engineer who loves to code and build things."
+            />
+
+            <FormSearchSelect
+              control={form.control}
+              setValue={form.setValue}
+              label={"Language"}
+              name="language"
+              noOptionsMessage="No language found."
+              options={[
+                { label: "English", value: "en" },
+                { label: "French", value: "fr" },
+                { label: "German", value: "de" },
+                { label: "Spanish", value: "es" },
+                { label: "Portuguese", value: "pt" },
+                { label: "Russian", value: "ru" },
+                { label: "Japanese", value: "ja" },
+                { label: "Korean", value: "ko" },
+                { label: "Chinese", value: "zh" },
+              ]}
+              hint="This is the option that will be used in the dashboard."
+            />
+            <FormCheckbox
+              control={form.control}
+              name="items"
+              label="Sidebar"
+              hint="Select the items you want to display in the sidebar."
+              options={[
+                { label: "Recents", value: "recents" },
+                { label: "Home", value: "home" },
+                { label: "Applications", value: "applications" },
+                { label: "Desktop", value: "desktop" },
+                { label: "Downloads", value: "downloads" },
+                { label: "Documents", value: "documents" },
+              ]}
+            />
           </div>
-          <FormTextarea control={form.control} />
-          <FormSearchSelect
-            control={form.control}
-            setValue={form.setValue}
-            options={[
-              { label: "English", value: "en" },
-              { label: "French", value: "fr" },
-              { label: "German", value: "de" },
-              { label: "Spanish", value: "es" },
-              { label: "Portuguese", value: "pt" },
-              { label: "Russian", value: "ru" },
-              { label: "Japanese", value: "ja" },
-              { label: "Korean", value: "ko" },
-              { label: "Chinese", value: "zh" },
-            ]}
-          />
-          <FormCheckbox control={form.control} />
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    </div>
   );
 };
 
