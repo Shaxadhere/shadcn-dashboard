@@ -26,7 +26,13 @@ const TodoForm: React.FC<Props> = () => {
       onSubmit={onSubmit}
       onClose={() => console.log("form modal closed!")}
     >
-      <FormInput control={form.control} />
+      <FormInput
+        control={form.control}
+        name="todo"
+        hint="This will be your todo title"
+        label="Title"
+        placeholder="Code for 100 hours straight"
+      />
       <FormSelect
         name="email"
         hint="This will be your public username."
