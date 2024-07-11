@@ -122,7 +122,10 @@ const TableComponents = () => {
           onQueryChange={onQueryChange}
           query={query}
         />
-        <p>{JSON.stringify(query, undefined, 2)}</p>
+        <h5 className="mt-8 text-sm">Table State</h5>
+        <p className="mt-2 text-sm text-gray-500 bg-gray-100 min-h-[100px]">
+          {JSON.stringify(query, undefined, 2)}
+        </p>
       </div>
     </div>
   );
