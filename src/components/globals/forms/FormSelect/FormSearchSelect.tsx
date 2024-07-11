@@ -26,17 +26,29 @@ import {
 type Props = {
   control: any;
   setValue: any;
-  options: any[];
+  options: { label: string; value: any }[];
+  name: string;
+  label?: string;
+  noOptionsMessage?: string;
+  hint?: string;
 };
 
-const FormSearchSelect = ({ control, setValue, options }: Props) => {
+const FormSearchSelect = ({
+  control,
+  setValue,
+  options,
+  name,
+  label,
+  hint,
+  noOptionsMessage = "No option found.",
+}: Props) => {
   return (
     <FormField
       control={control}
-      name="option"
+      name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>Language</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -60,7 +72,7 @@ const FormSearchSelect = ({ control, setValue, options }: Props) => {
               <Command className="rounded-lg border shadow-md">
                 <CommandInput placeholder="Type to search..." />
                 <CommandList>
-                  <CommandEmpty>No option found.</CommandEmpty>
+                  <CommandEmpty>{noOptionsMessage}</CommandEmpty>
                   <CommandGroup heading="Suggestions">
                     {options?.map((option) => (
                       <CommandItem
@@ -87,7 +99,7 @@ const FormSearchSelect = ({ control, setValue, options }: Props) => {
             </PopoverContent>
           </Popover>
           <FormDescription>
-            This is the option that will be used in the dashboard.
+           {hint}
           </FormDescription>
           <FormMessage />
         </FormItem>

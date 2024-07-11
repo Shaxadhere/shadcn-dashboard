@@ -76,14 +76,33 @@ const FormComponents = () => {
               label="Username"
               placeholder="Shadcn"
             />
-            <FormDateInput control={form.control} />
-            <FormRangeInput control={form.control} />
-            <FormTimeInput
+            <FormDateInput
+              control={form.control}
+              name="dob"
+              hint="Your date of birth is used to calculate your age."
+              label="Date of Birth"
+              placeholder="Pick a date"
+            />
+            <FormRangeInput
+              control={form.control}
+              name="range"
+              label="Range Input"
+            />
+            {/* <FormTimeInput
               control={form.control}
               setDate={(e) => console.log(e)}
               date={new Date()}
+            /> */}
+            <FormRadio
+              control={form.control}
+              name="type"
+              label="Notify me about"
+              options={[
+                { label: "All new messages", value: "all" },
+                { label: "Direct messages and mentions", value: "mentions" },
+                { label: "Nothing", value: "none" },
+              ]}
             />
-            <FormRadio control={form.control} />
             <FormSelect
               name="email"
               hint="This will be your public username."
@@ -98,14 +117,36 @@ const FormComponents = () => {
                 { label: "Option 5", value: "5" },
               ]}
             />
-            <FormSwitchCard control={form.control} />
+
+            <FormSwitchCard
+              title="Marketing emails?"
+              hint="Receive emails about new products, features, and more."
+              control={form.control}
+              name="marketing_emails"
+            />
+
             <div className="max-w-[250px]">
-              <FormSwitch control={form.control} />
+              <FormSwitch
+                control={form.control}
+                name="security_emails"
+                label="Security emails?"
+              />
             </div>
-            <FormTextarea control={form.control} />
+
+            <FormTextarea
+              control={form.control}
+              name="bio"
+              hint="Tell us about yourself in 160 characters or less."
+              label="Bio"
+              placeholder="I'm a software engineer who loves to code and build things."
+            />
+
             <FormSearchSelect
               control={form.control}
               setValue={form.setValue}
+              label={"Language"}
+              name="language"
+              noOptionsMessage="No language found."
               options={[
                 { label: "English", value: "en" },
                 { label: "French", value: "fr" },
@@ -117,8 +158,22 @@ const FormComponents = () => {
                 { label: "Korean", value: "ko" },
                 { label: "Chinese", value: "zh" },
               ]}
+              hint="This is the option that will be used in the dashboard."
             />
-            <FormCheckbox control={form.control} />
+            <FormCheckbox
+              control={form.control}
+              name="items"
+              label="Sidebar"
+              hint="Select the items you want to display in the sidebar."
+              options={[
+                { label: "Recents", value: "recents" },
+                { label: "Home", value: "home" },
+                { label: "Applications", value: "applications" },
+                { label: "Desktop", value: "desktop" },
+                { label: "Downloads", value: "downloads" },
+                { label: "Documents", value: "documents" },
+              ]}
+            />
           </div>
           <Button type="submit">Submit</Button>
         </form>
