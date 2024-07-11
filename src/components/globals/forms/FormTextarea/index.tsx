@@ -12,26 +12,28 @@ import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
   control: any;
+  name: string;
+  placeholder?: string;
+  hint?: string;
+  label?: string;
 };
 
-const FormTextarea = ({ control }: Props) => {
+const FormTextarea = ({ control, name, hint, placeholder, label }: Props) => {
   return (
     <FormField
       control={control}
-      name="bio"
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Bio</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
             <Textarea
-              placeholder="Tell us a little bit about yourself"
+              placeholder={placeholder}
               className="resize-none"
               {...field}
             />
           </FormControl>
-          <FormDescription>
-            You can <span>@mention</span> other users and organizations.
-          </FormDescription>
+          <FormDescription>{hint}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

@@ -9,42 +9,36 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type Props = {
   control: any;
+  name: string;
+  label?: string;
+  options?: { label: string; value: any }[];
 };
 
-const FormRadio = ({ control }: Props) => {
+const FormRadio = ({ control, name, label, options = [] }: Props) => {
   return (
     <FormField
       control={control}
-      name="type"
+      name={name}
       render={({ field }) => (
         <FormItem className="space-y-3">
-          <FormLabel>Notify me about...</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}
               defaultValue={field.value}
               className="flex flex-col space-y-1"
             >
-              <FormItem className="flex items-center space-x-3 space-y-0">
-                <FormControl>
-                  <RadioGroupItem value="all" />
-                </FormControl>
-                <FormLabel className="font-normal">All new messages</FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center space-x-3 space-y-0">
-                <FormControl>
-                  <RadioGroupItem value="mentions" />
-                </FormControl>
-                <FormLabel className="font-normal">
-                  Direct messages and mentions
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center space-x-3 space-y-0">
-                <FormControl>
-                  <RadioGroupItem value="none" />
-                </FormControl>
-                <FormLabel className="font-normal">Nothing</FormLabel>
-              </FormItem>
+              {options.map((item, index) => (
+                <FormItem
+                  key={index}
+                  className="flex items-center space-x-3 space-y-0"
+                >
+                  <FormControl>
+                    <RadioGroupItem value={item.value} />
+                  </FormControl>
+                  <FormLabel className="font-normal">{item.label}</FormLabel>
+                </FormItem>
+              ))}
             </RadioGroup>
           </FormControl>
           <FormMessage />

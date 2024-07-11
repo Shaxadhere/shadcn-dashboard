@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import classNames from "classnames";
+import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 
 type Props = {
@@ -17,7 +17,7 @@ const SiderItem = ({ label, icon, link, count, isSiderOpen }: Props) => {
   return (
     <Link
       to={link}
-      className={classNames(
+      className={cn(
         "flex items-center  rounded-lg text-muted-foreground transition-all hover:text-primary",
         {
           "bg-muted text-primary": isActive,

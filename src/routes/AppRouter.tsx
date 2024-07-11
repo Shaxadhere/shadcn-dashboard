@@ -1,13 +1,12 @@
 import AdminLayout from "@/components/globals/layouts/AdminLayout";
 import AuthLayout from "@/components/globals/layouts/AuthLayout";
-import Dashboard from "@/pages/admin/Dashborad";
-import Login from "@/pages/auth/Login";
-import Signup from "@/pages/auth/Signup";
 import {
   createBrowserRouter,
   Navigate,
   RouterProvider,
 } from "react-router-dom";
+import adminRoutes from "./adminRoutes";
+import authRoutes from "./authRoutes";
 
 const router = createBrowserRouter([
   {
@@ -17,30 +16,12 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminLayout />,
-    children: [
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-    ],
+    children: adminRoutes,
   },
   {
     path: "/auth",
     element: <AuthLayout />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to={"/auth/login"} />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <Signup />,
-      },
-    ],
+    children: authRoutes,
   },
   {
     path: "/about",
