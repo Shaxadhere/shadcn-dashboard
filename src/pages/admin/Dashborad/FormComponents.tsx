@@ -9,6 +9,7 @@ import FormSelect from "@/components/globals/forms/FormSelect";
 import FormSearchSelect from "@/components/globals/forms/FormSelect/FormSearchSelect";
 import FormSwitch from "@/components/globals/forms/FormSwitch";
 import FormSwitchCard from "@/components/globals/forms/FormSwitch/FormSwitchCard";
+import FormTagInput from "@/components/globals/forms/FormTagInput";
 import FormTextarea from "@/components/globals/forms/FormTextarea";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -50,6 +51,12 @@ const formSchema = z.object({
   pin: z.string().min(6, {
     message: "Your one-time password must be 6 characters.",
   }),
+  topicsTag: z.array(
+    z.object({
+      id: z.string(),
+      text: z.string(),
+    })
+  ),
 });
 
 const FormComponents = () => {
@@ -87,6 +94,15 @@ const FormComponents = () => {
               count={5}
               hint="Please enter the one-time password sent to your phone."
               label="One-Time Password"
+            />
+
+            <FormTagInput
+              control={form.control}
+              name="topicsTag"
+              label="Topics Tag"
+              setValue={form.setValue}
+              hint="Select the topics you are interested in."
+              placeholder="Select topics"
             />
 
             <FormDateInput

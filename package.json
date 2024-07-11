@@ -44,6 +44,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
+    "emblor": "^1.4.0",
     "framer-motion": "^11.2.14",
     "input-otp": "^1.2.4",
     "lexical": "^0.16.1",
