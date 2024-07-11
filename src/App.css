@@ -27,10 +27,9 @@
   background: rgb(150, 150, 150);
 }
 
-/* transition on all elements */
-
-* {
-  transition: all 0.2s ease-in-out;
+/* transitions */
+.ease {
+  transition: all 0.2s ease;
 }
 
 /* animated tabs */

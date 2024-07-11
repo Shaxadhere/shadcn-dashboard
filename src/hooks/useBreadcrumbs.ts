@@ -13,11 +13,14 @@ const useBreadcrumbs = () => {
 
   const breadcrumbs = useMemo(() => {
     return splitPath
-      .map((path, index) => ({
-        title: path,
-        link: splitPath.slice(0, index + 1).join("/"),
-      }))
-      .filter((path) => path.title !== "" && path.title !== "admin");
+      .map((path, index) => {
+        if (path === "admin") path = "Dashboard";
+        return {
+          title: path,
+          link: splitPath.slice(0, index + 1).join("/"),
+        };
+      })
+      .filter((path) => path.title !== "");
   }, [splitPath]);
 
   return breadcrumbs;

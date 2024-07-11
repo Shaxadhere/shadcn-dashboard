@@ -69,7 +69,7 @@ export default TabsComponents;
 const DummyContent = () => {
   return (
     <img
-      src="/linear.webp"
+      src="https://t4.ftcdn.net/jpg/05/32/27/51/360_F_532275175_XYkIzusERG8unr6zYXpZ7LDv8Xx6iPjz.jpg"
       alt="dummy image"
       width="1000"
       height="1000"

@@ -1,10 +1,8 @@
-import { Menu, Package2 } from "lucide-react";
-import SiderItem from "./SiderItem";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import QuickActionCard from "../../cards/QuickActionCard";
-import { menus } from "@/constants/menus";
 import { cn } from "@/lib/utils";
+import { Menu, Package2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import QuickActionCard from "../../cards/QuickActionCard";
 import SiderContent from "./SiderContent";
 
 type Props = {
@@ -16,7 +14,7 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
   return (
     <div
       className={cn(
-        "hidden border-r bg-muted/40 md:block h-[100vh] absolute top-[0px] left-[0px] w-[280px]",
+        "hidden border-r bg-muted/40 md:block h-[100vh] absolute top-[0px] left-[0px] w-[280px] ease-out duration-300",
         {
           "w-[70px]": !isSiderOpen,
         }
@@ -47,7 +45,7 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
             </Button>
           )}
         </div>
-        <SiderContent isSiderOpen />
+        <SiderContent isSiderOpen={isSiderOpen} />
         {isSiderOpen && (
           <div className="mt-auto p-4">
             <QuickActionCard

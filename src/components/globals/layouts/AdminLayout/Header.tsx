@@ -1,9 +1,9 @@
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ComboSearchInput from "../../popovers/ComboSearchInput";
-import HeaderMenu from "./HeaderMenu";
-import AppBreadcrumbs from "./AppBreadcrumbs";
 import { cn } from "@/lib/utils";
+import { Menu } from "lucide-react";
+import ComboSearchInput from "../../popovers/ComboSearchInput";
+import AppBreadcrumbs from "./AppBreadcrumbs";
+import HeaderMenu from "./HeaderMenu";
 import SiderDrawer from "./SiderDrawer";
 
 type Props = {
@@ -15,10 +15,10 @@ const Header = ({ toggleSider, isSiderOpen }: Props) => {
   return (
     <header
       className={cn(
-        "flex border-b bg-muted/40 px-4 h-[60px] lg:px-3 justify-between absolute items-center top-[0px] w-screen ",
+        "flex border-b bg-muted/40 px-4 h-[60px] lg:px-3 justify-between absolute items-center top-[0px] w-screen ease-out duration-300",
         {
-          "lg-left-[70px] lg-w-[calc(100vw-70px)]": !isSiderOpen,
-          "lg-left-[280px] lg-w-[calc(100vw-280px)]": isSiderOpen,
+          "lg:left-[70px] lg:w-[calc(100vw-70px)]": !isSiderOpen,
+          "lg:left-[280px] lg:w-[calc(100vw-280px)]": isSiderOpen,
         }
       )}
     >
@@ -40,7 +40,7 @@ const Header = ({ toggleSider, isSiderOpen }: Props) => {
         <AppBreadcrumbs />
       </div>
       <div className="flex gap-3 items-center">
-        <div className="w-full w-[260px] hidden lg-block">
+        <div className="w-full min-w-[260px] hidden lg:block">
           <form>
             <ComboSearchInput openClassName={"top-[132.5px] z-10"} />
           </form>

@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom";
 import useBoolean from "@/hooks/useBoolean";
 import { cn } from "@/lib/utils";
-import Sider from "./Sider";
-import Header from "./Header";
+import { Outlet } from "react-router-dom";
 import GlobalLoader from "../../loaders/GlobalLoader";
+import Header from "./Header";
+import Sider from "./Sider";
 
 const AdminLayout = () => {
   const { toggle: toggleSider, value: isSiderOpen } = useBoolean(true);
@@ -15,10 +15,10 @@ const AdminLayout = () => {
         <Header toggleSider={toggleSider} isSiderOpen={isSiderOpen} />
         <main
           className={cn(
-            "h-[calc(100vh-60px)] overflow-y-auto absolute top-[60px] p-[30px]",
+            "h-[calc(100vh-60px)] overflow-y-auto absolute top-[60px] p-[30px] ease-out duration-300",
             {
-              "lg-left-[280px] lg-w-[calc(100vw-280px)]": isSiderOpen,
-              "lg-left-[70px] lg-w-[calc(100vw-70px)]": !isSiderOpen,
+              "lg:left-[280px] lg:w-[calc(100vw-280px)]": isSiderOpen,
+              "lg:left-[70px] lg:w-[calc(100vw-70px)]": !isSiderOpen,
             }
           )}
         >

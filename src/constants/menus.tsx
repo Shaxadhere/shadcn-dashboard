@@ -1,4 +1,4 @@
-import { Home, LineChart, Package, ShoppingCart, Users2 } from "lucide-react";
+import { Home, Package, ShoppingCart, Users2 } from "lucide-react";
 
 export const menus = [
   {
@@ -24,11 +24,5 @@ export const menus = [
     tooltip: "Customers",
     icon: <Users2 className="h-5 w-5" />,
     link: "/admin/customers",
-  },
-  {
-    label: "Analytics",
-    tooltip: "Analytics",
-    icon: <LineChart className="h-5 w-5" />,
-    link: "/admin/analytics",
   },
 ] as const;

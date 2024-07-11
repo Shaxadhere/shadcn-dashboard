@@ -6,7 +6,6 @@ import {
   Smile,
   User,
 } from "lucide-react";
-
 import {
   Command,
   CommandEmpty,

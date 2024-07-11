@@ -77,7 +77,7 @@ export const AnimatedTabs = ({
         active={active}
         key={active.value}
         hovering={hovering}
-        className={cn("mt-32", contentClassName)}
+        className={cn("mt-12", contentClassName)}
       />
     </>
   );
