@@ -4,6 +4,7 @@ import FormComponents from "./FormComponents";
 import TableComponents from "./TableComponents";
 import Popovers from "./Popovers";
 import TabsComponents from "./Tabs";
+import NoDataActionBox from "@/components/globals/empty-placeholders/NoDataActionBox";
 
 const Dashboard = () => {
   return (
@@ -13,12 +14,12 @@ const Dashboard = () => {
         <FormComponents />
       </div>
 
-      <div>
+      <div className="mt-10">
         <h1 className="mb-2 text-lg font-bold">Data Table</h1>
         <TableComponents />
       </div>
 
-      <div>
+      <div className="mt-10">
         <h1 className="mb-2 text-lg font-bold">Toasts</h1>
         <Button
           onClick={() =>
@@ -36,37 +37,31 @@ const Dashboard = () => {
         </Button>
       </div>
 
-      <div>
+      <div className="mt-10">
         <h1 className="mb-2 text-lg font-bold">Popovers</h1>
         <Popovers />
       </div>
 
-      <div>
-        <h1 className="mb-2 text-lg font-bold">Tabs Components</h1>
-        <TabsComponents />
-      </div>
-
       <div className="mt-10">
         <h1 className="mb-2 text-lg font-bold">Heros</h1>
+
         <div className="flex flex-col gap-4 lg:gap-6  h-full">
           <div className="flex items-center">
             <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
           </div>
-          <div
-            className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
-            x-chunk="dashboard-02-chunk-1"
-          >
-            <div className="flex flex-col items-center gap-1 text-center">
-              <h3 className="text-2xl font-bold tracking-tight">
-                You have no products
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                You can start selling as soon as you add a product.
-              </p>
-              <Button className="mt-4">Add Product</Button>
-            </div>
-          </div>
+
+          <NoDataActionBox
+            title="You have no products"
+            subtitle="You can start selling as soon as you add a product."
+            actionText="Add Product"
+            onActionClick={() => console.log("Add Product")}
+          />
         </div>
+      </div>
+
+      <div className="mt-10">
+        <h1 className="mb-1 text-lg font-bold">Tabs Components</h1>
+        <TabsComponents />
       </div>
     </div>
   );

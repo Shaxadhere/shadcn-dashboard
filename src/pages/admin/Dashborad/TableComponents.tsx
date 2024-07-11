@@ -112,7 +112,7 @@ const TableComponents = () => {
   }, []);
 
   return (
-    <div className="w-[100%] py-10">
+    <div className="w-[100%]">
       <DataTable
         columns={columns}
         data={data}
