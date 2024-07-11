@@ -112,15 +112,18 @@ const TableComponents = () => {
   }, []);
 
   return (
-    <div className="w-[100%]">
-      <DataTable
-        columns={columns}
-        data={data}
-        totalRecords={200}
-        onQueryChange={onQueryChange}
-        query={query}
-      />
-      <p>{JSON.stringify(query, undefined, 2)}</p>
+    <div className="mt-10">
+      <h1 className="mb-2 text-lg font-bold">Data Table</h1>
+      <div className="w-full">
+        <DataTable
+          columns={columns}
+          data={data}
+          totalRecords={200}
+          onQueryChange={onQueryChange}
+          query={query}
+        />
+        <p>{JSON.stringify(query, undefined, 2)}</p>
+      </div>
     </div>
   );
 };

@@ -64,44 +64,66 @@ const FormComponents = () => {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex gap-5 flex-col">
-          <FormInput control={form.control} />
-          <FormDateInput control={form.control} />
-          <FormRangeInput control={form.control} />
-          <FormTimeInput
-            control={form.control}
-            setDate={(e) => console.log(e)}
-            date={new Date()}
-          />
-          <FormRadio control={form.control} />
-          <FormSelect control={form.control} />
-          <FormSwitchCard control={form.control} />
-          <div className="max-w-[250px]">
-            <FormSwitch control={form.control} />
+    <div>
+      <h1 className="mb-2 text-lg font-bold">Forms</h1>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <div className="flex gap-5 flex-col">
+            <FormInput
+              control={form.control}
+              name="username"
+              hint="This will be your public username"
+              label="Username"
+              placeholder="Shadcn"
+            />
+            <FormDateInput control={form.control} />
+            <FormRangeInput control={form.control} />
+            <FormTimeInput
+              control={form.control}
+              setDate={(e) => console.log(e)}
+              date={new Date()}
+            />
+            <FormRadio control={form.control} />
+            <FormSelect
+              name="email"
+              hint="This will be your public username."
+              label="Email"
+              placeholder="Select an email to display"
+              control={form.control}
+              options={[
+                { label: "Option 1", value: "1" },
+                { label: "Option 2", value: "2" },
+                { label: "Option 3", value: "3" },
+                { label: "Option 4", value: "4" },
+                { label: "Option 5", value: "5" },
+              ]}
+            />
+            <FormSwitchCard control={form.control} />
+            <div className="max-w-[250px]">
+              <FormSwitch control={form.control} />
+            </div>
+            <FormTextarea control={form.control} />
+            <FormSearchSelect
+              control={form.control}
+              setValue={form.setValue}
+              options={[
+                { label: "English", value: "en" },
+                { label: "French", value: "fr" },
+                { label: "German", value: "de" },
+                { label: "Spanish", value: "es" },
+                { label: "Portuguese", value: "pt" },
+                { label: "Russian", value: "ru" },
+                { label: "Japanese", value: "ja" },
+                { label: "Korean", value: "ko" },
+                { label: "Chinese", value: "zh" },
+              ]}
+            />
+            <FormCheckbox control={form.control} />
           </div>
-          <FormTextarea control={form.control} />
-          <FormSearchSelect
-            control={form.control}
-            setValue={form.setValue}
-            options={[
-              { label: "English", value: "en" },
-              { label: "French", value: "fr" },
-              { label: "German", value: "de" },
-              { label: "Spanish", value: "es" },
-              { label: "Portuguese", value: "pt" },
-              { label: "Russian", value: "ru" },
-              { label: "Japanese", value: "ja" },
-              { label: "Korean", value: "ko" },
-              { label: "Chinese", value: "zh" },
-            ]}
-          />
-          <FormCheckbox control={form.control} />
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    </div>
   );
 };
 

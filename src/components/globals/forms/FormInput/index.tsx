@@ -12,20 +12,24 @@ import { Input } from "@/components/ui/input";
 
 type Props = {
   control: any;
+  label?: string;
+  hint?: string;
+  placeholder?: string;
+  name: string;
 };
 
-const FormInput = ({ control }: Props) => {
+const FormInput = ({ control, label, hint, placeholder, name }: Props) => {
   return (
     <FormField
       control={control}
-      name="username"
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Username</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder="shadcn" {...field} />
+            <Input placeholder={placeholder} {...field} />
           </FormControl>
-          <FormDescription>This is your public display name.</FormDescription>
+          <FormDescription>{hint}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

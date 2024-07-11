@@ -58,8 +58,11 @@ const TabsComponents: React.FC<Props> = () => {
   ];
 
   return (
-    <div className="h-[20rem] md:h-[40rem] relative b flex flex-col mx-auto w-full  items-start justify-start my-3">
-      <AnimatedTabs tabs={tabs} />
+    <div className="my-10">
+      <h1 className="mb-1 text-lg font-bold">Tabs Components</h1>
+      <div className="h-[20rem] md:h-[40rem] relative b flex flex-col mx-auto w-full items-start justify-start my-3">
+        <AnimatedTabs tabs={tabs} />
+      </div>
     </div>
   );
 };
@@ -71,9 +74,7 @@ const DummyContent = () => {
     <img
       src="https://t4.ftcdn.net/jpg/05/32/27/51/360_F_532275175_XYkIzusERG8unr6zYXpZ7LDv8Xx6iPjz.jpg"
       alt="dummy image"
-      width="1000"
-      height="1000"
-      className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+      className="object-cover object-left-top w-full h-full m-5 rounded-xl mx-auto"
     />
   );
 };
