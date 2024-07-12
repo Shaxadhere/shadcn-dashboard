@@ -5,8 +5,9 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import adminRoutes from "./adminRoutes";
-import authRoutes from "./authRoutes";
+import adminRoutes from "./admin-routes";
+import authRoutes from "./auth-routes";
+import Admin2Layout from "@/components/globals/layouts/Admin2Layout";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +25,9 @@ const router = createBrowserRouter([
     children: authRoutes,
   },
   {
-    path: "/about",
-    element: <div>About</div>,
-  },
-  {
-    path: "/contact",
-    element: <div>Contact</div>,
+    path: "/admin2",
+    element: <Admin2Layout />,
+    children: adminRoutes,
   },
 ]);
 

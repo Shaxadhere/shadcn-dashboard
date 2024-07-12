@@ -26,3 +26,30 @@ export const menus = [
     link: "/admin/customers",
   },
 ] as const;
+
+export const menus2 = [
+  {
+    label: "Dashboard",
+    tooltip: "Dashboard",
+    icon: <Home className="h-5 w-5" />,
+    link: "/admin2/dashboard",
+  },
+  {
+    label: "Orders",
+    tooltip: "Orders",
+    icon: <ShoppingCart className="h-5 w-5" />,
+    link: "/admin2/orders",
+  },
+  {
+    label: "Products",
+    tooltip: "Products",
+    icon: <Package className="h-5 w-5" />,
+    link: "/admin2/products",
+  },
+  {
+    label: "Customers",
+    tooltip: "Customers",
+    icon: <Users2 className="h-5 w-5" />,
+    link: "/admin2/customers",
+  },
+] as const;

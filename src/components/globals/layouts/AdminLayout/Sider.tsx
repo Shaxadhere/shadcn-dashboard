@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, Package2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import QuickActionCard from "../../cards/QuickActionCard";
 import SiderContent from "./SiderContent";
 
@@ -11,6 +11,7 @@ type Props = {
 };
 
 const Sider = ({ toggleSider, isSiderOpen }: Props) => {
+  const navigate = useNavigate();
   return (
     <div
       className={cn(
@@ -49,11 +50,10 @@ const Sider = ({ toggleSider, isSiderOpen }: Props) => {
         {isSiderOpen && (
           <div className="mt-auto p-4">
             <QuickActionCard
-              title="Upgrade to Pro"
-              description=" Unlock all features and get unlimited access to our support
-                team."
-              actionTitle="Upgrade"
-              action={() => console.log("upgrade")}
+              title="Switch to Multi-Sider"
+              description="Access more features and tools with Multi-Sider."
+              actionTitle="Switch"
+              action={() => navigate("/admin2/dashboard")}
             />
           </div>
         )}

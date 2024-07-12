@@ -1,0 +1,30 @@
+import { cn } from "@/lib/utils";
+import { Link, useLocation } from "react-router-dom";
+
+type Props = {
+  label: string;
+  link: string;
+  icon: any;
+};
+
+const SiderItem = ({ label, icon, link }: Props) => {
+  const { pathname } = useLocation();
+  const splittedPath = pathname.split("/");
+  const isActive = splittedPath.includes(link.split("/")[2]);
+  return (
+    <Link
+      to={link}
+      className={cn(
+        "rounded-lg text-muted-foreground transition-all hover:text-primary text-sm py-5 justify-center flex flex-col items-center",
+        {
+          "bg-muted text-primary": isActive,
+        }
+      )}
+    >
+      {icon}
+      <div className="mt-2 text-xs">{label}</div>
+    </Link>
+  );
+};
+
+export default SiderItem;
