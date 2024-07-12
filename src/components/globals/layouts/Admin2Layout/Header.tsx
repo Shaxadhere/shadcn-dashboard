@@ -6,31 +6,17 @@ import AppBreadcrumbs from "./AppBreadcrumbs";
 import HeaderMenu from "./HeaderMenu";
 import SiderDrawer from "./SiderDrawer";
 
-type Props = {
-  toggleSider: () => void;
-  isSiderOpen: boolean;
-};
+type Props = {};
 
-const Header = ({ toggleSider, isSiderOpen }: Props) => {
+const Header = ({}: Props) => {
   return (
     <header
       className={cn(
         `flex border-b bg-muted/40 px-4 h-[60px] lg:px-5 justify-between absolute items-center top-[0px] w-screen ease-out duration-300 lg:left-[90px] lg:w-[calc(100vw-90px)]`
       )}
     >
-      <SiderDrawer isSiderOpen={isSiderOpen} toggleSider={toggleSider} />
+      <SiderDrawer />
       <div className="flex items-center gap-3">
-        <div>
-          <Button
-            onClick={toggleSider}
-            variant="outline"
-            size="icon"
-            className="ml-auto h-8 w-8"
-          >
-            <Menu className="h-4 w-4" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </div>
         <AppBreadcrumbs />
       </div>
       <div className="flex gap-3 items-center">

@@ -7,13 +7,12 @@ import Sider from "./Sider";
 import SubSider from "./SubSider";
 
 const Admin2Layout = () => {
-  const { toggle: toggleSider, value: isSiderOpen } = useBoolean(false);
   return (
     <div className={cn("min-h-screen w-full")}>
       <GlobalLoader percentage={0} />
       <Sider />
       <div>
-        <Header toggleSider={toggleSider} isSiderOpen={isSiderOpen} />
+        <Header />
         <main
           className={
             "h-[calc(100vh-60)] overflow-y-auto absolute top-[60px] ease-out duration-300 lg:left-[90px] lg:w-[calc(100vw-90px)]"
