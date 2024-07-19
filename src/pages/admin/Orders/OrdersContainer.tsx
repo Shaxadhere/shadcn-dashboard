@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CommonDropdown from "@/components/globals/drop-menus/CommonDropdown";
 import { toast } from "sonner";
+import useURLState from "@/hooks/useURLState";
 
 export const useOrdersRoot = () => {
   const formState = useBoolean(false);
@@ -75,7 +76,10 @@ type OrdersListProps = {
 
 export const useOrdersList = ({ onDelete, onEdit }: OrdersListProps) => {
   const [data, setData] = useState<Order[]>([]);
-  const [query, setQuery] = useState({});
+  const [query, setQuery] = useURLState({
+    pageNumber: 1,
+    pageSize: 10,
+  });
   const deboucedQuery = useDebouce(query);
 
   async function getData(): Promise<Order[]> {
@@ -98,8 +102,14 @@ export const useOrdersList = ({ onDelete, onEdit }: OrdersListProps) => {
       enableHiding: false,
     },
     {
+      accessorKey: "type",
+      header: ({ column }) => <ColumnHeader column={column} title="Status" />,
+      enableSorting: true,
+      enableHiding: true,
+    },
+    {
       accessorKey: "email",
-      header: ({ column }) => <ColumnHeader column={column} title="Email" />,
+      header: ({ column }) => <ColumnHeader column={column} title="Type" />,
       enableSorting: true,
     },
     {
@@ -118,11 +128,47 @@ export const useOrdersList = ({ onDelete, onEdit }: OrdersListProps) => {
     },
   ];
 
+  const filters = [
+    {
+      value: "status",
+      label: "Status",
+      options: [
+        {
+          label: "All",
+          value: "all",
+        },
+        {
+          label: "Active",
+          value: "active",
+        },
+        {
+          label: "Inactive",
+          value: "inactive",
+        },
+      ],
+    },
+    {
+      value: "type",
+      label: "Type",
+      options: [
+        {
+          label: "Paid",
+          value: "paid",
+        },
+        {
+          label: "Unpaid",
+          value: "unpaid",
+        },
+      ],
+    },
+  ];
+
   return {
     columns,
     data,
     query,
     onQueryChange,
+    filters,
   };
 };
 
@@ -159,8 +205,8 @@ export const useOrderForm = ({ formState, data, onClose }: OrdersFormProps) => {
 
   const onSubmitUpdate = (values) => {
     // call the update order api
-    toast("Order has been created", {
-      description: `${values.username} has been created successfully.`,
+    toast("Order has been updated", {
+      description: `${values.username} has been updated successfully.`,
       important: true,
       action: {
         label: "View",

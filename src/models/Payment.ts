@@ -3,4 +3,5 @@ export type Payment = {
     amount: number;
     status: "pending" | "processing" | "success" | "failed";
     email: string;
+    type: "Paid" | "Unpaid";
   };

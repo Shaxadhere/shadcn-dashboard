@@ -8,7 +8,7 @@ interface Props {
 }
 
 const OrdersList: React.FC<Props> = ({ onDelete, onEdit }) => {
-  const { columns, data, onQueryChange, query } = useOrdersList({
+  const { columns, data, onQueryChange, query, filters } = useOrdersList({
     onDelete,
     onEdit,
   });
@@ -20,6 +20,7 @@ const OrdersList: React.FC<Props> = ({ onDelete, onEdit }) => {
         totalRecords={200}
         onQueryChange={onQueryChange}
         query={query}
+        filters={filters}
       />
     </div>
   );

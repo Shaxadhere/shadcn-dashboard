@@ -24,9 +24,8 @@ interface DataTablePaginationProps<TData> {
 export function Pagination<TData>({
   table,
   onQueryChange,
-  query,
-  totalPages,
 }: DataTablePaginationProps<TData>) {
+  console.log(table.getState().pagination,"pagination")
   return (
     <div className="flex items-center justify-between px-2 py-2">
       <div className="flex-1 text-sm text-muted-foreground">
@@ -40,7 +39,8 @@ export function Pagination<TData>({
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
-              onQueryChange && onQueryChange({ pageSize: Number(value) });
+              onQueryChange &&
+                onQueryChange({ pageSize: Number(value), pageNumber: 1 });
             }}
           >
             <SelectTrigger className="h-8 w-[70px]">

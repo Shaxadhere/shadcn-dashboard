@@ -1,18 +1,9 @@
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import useBreadcrumbs from "@/hooks/useBreadcrumbs";
 import { capitalize } from "@/lib/string-utils";
 import React from "react";
@@ -26,11 +17,9 @@ const AppBreadcrumbs = () => {
         {breadcrumbs?.map((item, index) => (
           <React.Fragment key={index}>
             {index > 0 && <BreadcrumbSeparator />}
-            <BreadcrumbItem>
-              <Link to={item.link}>
-                <BreadcrumbLink>{capitalize(item.title)}</BreadcrumbLink>
-              </Link>
-            </BreadcrumbItem>
+            <Link to={item.link}>
+              <BreadcrumbItem>{capitalize(item.title)}</BreadcrumbItem>
+            </Link>
           </React.Fragment>
         ))}
       </BreadcrumbList>
