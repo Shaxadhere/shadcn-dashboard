@@ -7,9 +7,9 @@ export const ordersSubmenu = [
     link: "/admin2/orders",
   },
   {
-    label: "Customers",
+    label: "Invoices",
     icon: <Users2 className="h-5 w-5" />,
-    link: "/admin2/orders/customers",
+    link: "/admin2/orders/invoices",
   },
 ] as const;
 

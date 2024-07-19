@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useBoolean = (initialValue: boolean) => {
+const useBoolean = (initialValue: boolean = false) => {
   const [value, setValue] = useState(initialValue);
 
   const setTrue = () => setValue(true);

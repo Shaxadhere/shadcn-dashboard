@@ -15,7 +15,7 @@ const Admin2Layout = () => {
         <Header />
         <main
           className={
-            "h-[calc(100vh-60)] overflow-y-auto absolute top-[60px] ease-out duration-300 lg:left-[90px] lg:w-[calc(100vw-90px)]"
+            "h-[calc(100vh-60px)] overflow-y-auto absolute top-[60px] ease-out duration-300 lg:left-[90px] lg:w-[calc(100vw-90px)]"
           }
         >
           <Outlet />

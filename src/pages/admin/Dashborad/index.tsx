@@ -8,7 +8,7 @@ import TabsComponents from "./Tabs";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="p-[30px]">
       <FormComponents />
       <TableComponents />
       <Feedback />

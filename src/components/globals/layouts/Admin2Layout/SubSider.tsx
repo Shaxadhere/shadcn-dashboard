@@ -7,21 +7,10 @@ import { useLocation } from "react-router-dom";
 type Props = {
   subsiderMenu?: { label: string; link: string; icon: any }[];
   title?: string;
+  isSubsiderOpen?: boolean;
 };
 
-const SubSider = ({ subsiderMenu, title }: Props) => {
-  const { pathname } = useLocation();
-  const {
-    toggle: toggleSubsider,
-    setTrue: openSubsider,
-    value: isSubsiderOpen,
-  } = useBoolean(false);
-
-  useEffect(() => {
-    if (!isSubsiderOpen) {
-      openSubsider();
-    }
-  }, [pathname]);
+const SubSider = ({ subsiderMenu, title, isSubsiderOpen }: Props) => {
   return (
     <div
       className={cn(

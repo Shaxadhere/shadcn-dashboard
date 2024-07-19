@@ -15,7 +15,7 @@ const SiderItem = ({ label, icon, link }: Props) => {
     <Link
       to={link}
       className={cn(
-        "rounded-lg text-muted-foreground transition-all hover:text-primary text-sm py-5 justify-center flex flex-col items-center",
+        "rounded-lg text-muted-foreground transition-all hover:text-primary text-sm py-3 justify-center flex flex-col items-center w-[fit-content] mx-auto w-[70px]",
         {
           "bg-muted text-primary": isActive,
         }
