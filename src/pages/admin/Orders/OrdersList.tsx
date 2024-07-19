@@ -1,14 +1,17 @@
 import React from "react";
-import { useCrudList } from "./CrudContainer";
-import useBoolean from "@/hooks/useBoolean";
+import { useOrdersList } from "./OrdersContainer";
 import DataTable from "@/components/globals/table/DataTable";
 
 interface Props {
-  formState: ReturnType<typeof useBoolean>;
+  onEdit?: (row: any) => void;
+  onDelete?: (row: any) => void;
 }
 
-const CrudList: React.FC<Props> = ({ formState }) => {
-  const { columns, data, onQueryChange, query } = useCrudList({ formState });
+const OrdersList: React.FC<Props> = ({ onDelete, onEdit }) => {
+  const { columns, data, onQueryChange, query } = useOrdersList({
+    onDelete,
+    onEdit,
+  });
   return (
     <div className="w-full">
       <DataTable
@@ -22,4 +25,4 @@ const CrudList: React.FC<Props> = ({ formState }) => {
   );
 };
 
-export default CrudList;
+export default OrdersList;

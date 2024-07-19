@@ -11,11 +11,7 @@ interface Props {
 
 const OperationLayout: React.FC<Props> = ({ subsiderMenu, title }) => {
   const { pathname } = useLocation();
-  const {
-    toggle: toggleSubsider,
-    setTrue: openSubsider,
-    value: isSubsiderOpen,
-  } = useBoolean(false);
+  const { setTrue: openSubsider, value: isSubsiderOpen } = useBoolean(false);
 
   useEffect(() => {
     if (!isSubsiderOpen) {
@@ -30,7 +26,7 @@ const OperationLayout: React.FC<Props> = ({ subsiderMenu, title }) => {
         isSubsiderOpen={isSubsiderOpen}
       />
       <div
-        className={cn(`p-[30px]`, isSubsiderOpen && `w-[calc(100vw-250px)]`)}
+        className={cn(`p-[25px]`, isSubsiderOpen && `w-[calc(100vw-250px)]`)}
       >
         <Outlet />
       </div>

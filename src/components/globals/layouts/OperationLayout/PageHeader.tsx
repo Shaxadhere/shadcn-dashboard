@@ -4,18 +4,20 @@ import React from "react";
 interface Props {
   title?: string;
   createButtonText?: string;
+  onCreate?: () => void;
 }
 
-const CrudHeader: React.FC<Props> = ({
+const PageHeader: React.FC<Props> = ({
   title,
   createButtonText = "Create New",
+  onCreate,
 }) => {
   return (
     <div className="flex justify-between items-center bg-white font-semibold text-3xl">
       <h2>{title}</h2>
-      <Button>{createButtonText}</Button>
+      {onCreate && <Button onClick={onCreate}>{createButtonText}</Button>}
     </div>
   );
 };
 
-export default CrudHeader;
+export default PageHeader;

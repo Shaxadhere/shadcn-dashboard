@@ -3,24 +3,36 @@ import CommonModal from "./CommonModal";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
+import useBoolean from "@/hooks/useBoolean";
 
 interface Props {
   form: any;
   onSubmit: (values: any) => void;
   children?: React.ReactNode;
   onClose?: () => void;
+  formState: ReturnType<typeof useBoolean>;
+  title: string;
+  subtitle?: string;
 }
 
-const FormModal: React.FC<Props> = ({ onSubmit, form, children, onClose }) => {
+const FormModal: React.FC<Props> = ({
+  onSubmit,
+  form,
+  children,
+  onClose,
+  formState,
+  title,
+  subtitle
+}) => {
   return (
     <Form {...form}>
       <form>
         <CommonModal
-          triggerText="Open Modal"
-          triggerComponent={() => <Button>Open Modal</Button>}
-          title="Modal Title"
-          subtitle="Make changes to your profile here. Click save when you're done."
+          isOpen={formState.value}
+          title={title}
+          subtitle={subtitle}
           onClose={() => {
+            formState.setFalse();
             onClose && onClose();
             form.reset();
           }}

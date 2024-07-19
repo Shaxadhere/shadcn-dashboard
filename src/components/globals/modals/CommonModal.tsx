@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -6,41 +5,34 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-
 interface Props {
-  triggerComponent?: () => React.ReactNode;
-  triggerText?: string;
   title?: string;
   subtitle?: string;
   children?: React.ReactNode;
   footerActions?: React.ReactNode;
   onClose?: () => void;
+  isOpen: boolean;
 }
 
 const CommonModal: React.FC<Props> = ({
-  triggerComponent,
-  triggerText,
   subtitle,
   title,
   children,
   footerActions,
   onClose,
+  isOpen,
 }) => {
   return (
-    <Dialog onOpenChange={(isOpen) => !isOpen && onClose && onClose()}>
-      <DialogTrigger asChild>
-        {triggerComponent ? (
-          triggerComponent()
-        ) : (
-          <Button variant="outline">{triggerText}</Button>
-        )}
-      </DialogTrigger>
+    <Dialog
+      onOpenChange={(isOpen) => !isOpen && onClose && onClose()}
+      open={isOpen}
+      modal={isOpen}
+    >
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{subtitle}</DialogDescription>
+          {subtitle && <DialogDescription>{subtitle}</DialogDescription>}
         </DialogHeader>
         {children}
         <DialogFooter>{footerActions}</DialogFooter>
