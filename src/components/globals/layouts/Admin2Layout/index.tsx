@@ -1,11 +1,9 @@
-import useBoolean from "@/hooks/useBoolean";
 import { cn } from "@/lib/utils";
 import { Outlet } from "react-router-dom";
 import GlobalLoader from "../../loaders/GlobalLoader";
+import FloatingActionPopover from "../../popovers/FloatingActionPopover";
 import Header from "./Header";
 import Sider from "./Sider";
-import SubSider from "./SubSider";
-import FloatingActionPopover from "../../popovers/FloatingActionPopover";
 
 const Admin2Layout = () => {
   return (

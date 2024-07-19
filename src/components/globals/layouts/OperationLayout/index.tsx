@@ -19,7 +19,7 @@ const OperationLayout: React.FC<Props> = ({ subsiderMenu, title }) => {
     }
   }, [pathname]);
   return (
-    <div className="flex">
+    <div className="flex h-[calc(100vh-60px)] fixed">
       <SubSider
         subsiderMenu={subsiderMenu}
         title={title}
@@ -27,8 +27,8 @@ const OperationLayout: React.FC<Props> = ({ subsiderMenu, title }) => {
       />
       <div
         className={cn(
-          `px-[25px] py-[15px]`,
-          isSubsiderOpen && `w-[calc(100vw-250px)]`
+          `px-[25px] py-[15px] h-[calc(100vh-60px)]`,
+          isSubsiderOpen && `w-[calc(100vw-330px)] overflow-x-auto`
         )}
       >
         <Outlet />

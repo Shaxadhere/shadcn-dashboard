@@ -4,11 +4,51 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
 import { FamilyButton } from "@/components/family-button";
+import { cn } from "@/lib/utils";
+
+type placement = "top-right" | "top-left" | "bottom-right" | "bottom-left";
+
+const getPlacementPosition = (placement: placement) => {
+  switch (placement) {
+    case "bottom-right":
+      return "bottom-4 right-4";
+    case "bottom-left":
+      return "bottom-4 left-4";
+    case "top-right":
+      return "top-4 right-4";
+    case "top-left":
+      return "top-4 left-4";
+    default:
+      return "bottom-4 right-4";
+  }
+};
 
 const FloatingActionPopover = () => {
+  const [placement, setPlacement] = useState<placement>("bottom-right");
+
+  const onDragEnd = (event: any) => {
+    const { clientX: x, clientY: y } = event;
+    if (x > window.innerWidth / 2) {
+      if (y > window.innerHeight / 2) {
+        setPlacement("bottom-right");
+      } else {
+        setPlacement("top-right");
+      }
+    } else {
+      if (y > window.innerHeight / 2) {
+        setPlacement("bottom-left");
+      } else {
+        setPlacement("top-left");
+      }
+    }
+  };
   return (
     <div className=" w-full h-full min-h-[240px]">
-      <div className="fixed bottom-4 right-4 ">
+      <div
+        onDragEnd={onDragEnd}
+        draggable
+        className={cn("fixed", getPlacementPosition(placement))}
+      >
         <FamilyButton>
           <OgImageSection />
         </FamilyButton>

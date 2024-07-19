@@ -1,6 +1,5 @@
 import ComboSearchInput from "@/components/globals/popovers/ComboSearchInput";
 import CommonPopover from "@/components/globals/popovers/CommonPopover";
-import FloatingActionPopover from "@/components/globals/popovers/FloatingActionPopover";
 import HoverCardPopover from "@/components/globals/popovers/HoverCardPopover";
 import { NotepadTextIcon, PersonStanding } from "lucide-react";
 
