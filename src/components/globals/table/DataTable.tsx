@@ -78,7 +78,6 @@ const DataTable = <TData, TValue>({
     manualSorting: true,
     manualFiltering: true,
     debugTable: true,
-    // filterFns:
     state: {
       sorting,
       columnFilters,
@@ -114,12 +113,12 @@ const DataTable = <TData, TValue>({
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-[#e9e9e9]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead className="h-[unset] py-1" key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
