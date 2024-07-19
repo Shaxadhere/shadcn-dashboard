@@ -5,6 +5,7 @@ import GlobalLoader from "../../loaders/GlobalLoader";
 import Header from "./Header";
 import Sider from "./Sider";
 import SubSider from "./SubSider";
+import FloatingActionPopover from "../../popovers/FloatingActionPopover";
 
 const Admin2Layout = () => {
   return (
@@ -19,6 +20,7 @@ const Admin2Layout = () => {
           }
         >
           <Outlet />
+          <FloatingActionPopover />
         </main>
       </div>
     </div>

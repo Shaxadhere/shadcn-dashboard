@@ -5,6 +5,7 @@ import ComboSearchInput from "../../popovers/ComboSearchInput";
 import AppBreadcrumbs from "./AppBreadcrumbs";
 import HeaderMenu from "./HeaderMenu";
 import SiderDrawer from "./SiderDrawer";
+import { headerSearchOptions } from "@/constants/headerSearch";
 
 type Props = {};
 
@@ -22,7 +23,10 @@ const Header = ({}: Props) => {
       <div className="flex gap-3 items-center">
         <div className="w-full min-w-[260px] hidden lg:block">
           <form>
-            <ComboSearchInput openClassName={"top-[132.5px] z-10"} />
+            <ComboSearchInput
+              openClassName={"top-[132.5px] z-10 "}
+              options={headerSearchOptions}
+            />
           </form>
         </div>
         <HeaderMenu />

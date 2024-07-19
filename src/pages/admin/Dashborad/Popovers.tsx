@@ -34,8 +34,6 @@ const Popovers = () => {
             </div>
           </div>
         </HoverCardPopover>
-
-        <FloatingActionPopover />
       </div>
     </div>
   );

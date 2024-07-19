@@ -22,9 +22,20 @@ import { cn } from "@/lib/utils";
 type Props = {
   className?: string;
   openClassName?: string;
+  options?: {
+    heading: string;
+    items: {
+      icon: any;
+      label: string;
+    }[];
+  }[];
 };
 
-const ComboSearchInput = ({ className, openClassName }: Props) => {
+const ComboSearchInput = ({
+  className,
+  openClassName,
+  options = [],
+}: Props) => {
   const {
     setFalse: closeDropdown,
     setTrue: openDropdown,
@@ -40,43 +51,27 @@ const ComboSearchInput = ({ className, openClassName }: Props) => {
     >
       <CommandInput
         placeholder="Type a command or search..."
+        className="h-9"
         onFocus={openDropdown}
         onBlur={closeDropdown}
       />
-      <CommandList style={{ display: isOpen ? "initial" : "none" }}>
+      <CommandList className="min-h-[265px]" style={{ display: isOpen ? "initial" : "none" }}>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
-          <CommandItem>
-            <Calendar className="mr-2 h-4 w-4" />
-            <span>Calendar</span>
-          </CommandItem>
-          <CommandItem>
-            <Smile className="mr-2 h-4 w-4" />
-            <span>Search Emoji</span>
-          </CommandItem>
-          <CommandItem>
-            <Calculator className="mr-2 h-4 w-4" />
-            <span>Calculator</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Settings">
-          <CommandItem>
-            <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-            <CommandShortcut>⌘P</CommandShortcut>
-          </CommandItem>
-          <CommandItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-            <CommandShortcut>⌘B</CommandShortcut>
-          </CommandItem>
-          <CommandItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
-            <CommandShortcut>⌘S</CommandShortcut>
-          </CommandItem>
-        </CommandGroup>
+        {options.map((group, index) => {
+          return (
+            <>
+              {index > 0 && <CommandSeparator />}
+              <CommandGroup key={index} heading={group.heading}>
+                {group.items.map((item, index) => (
+                  <CommandItem key={index}>
+                    <item.icon className="mr-2 h-4 w-4" />
+                    <span>{item.label}</span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          );
+        })}
       </CommandList>
     </Command>
   );
