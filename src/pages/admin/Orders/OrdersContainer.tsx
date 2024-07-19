@@ -64,7 +64,7 @@ export const useOrdersRoot = () => {
     onDelete,
     onConfirmDelete,
     onCancelDelete,
-    onClose
+    onClose,
   };
 };
 
@@ -144,10 +144,32 @@ export const useOrderForm = ({ formState, data, onClose }: OrdersFormProps) => {
 
   const onSubmitCreate = (values) => {
     // call the create order api
+    toast("Order has been created", {
+      description: `${values.username} has been created successfully.`,
+      important: true,
+      action: {
+        label: "View",
+        onClick: () => console.log("View"),
+      },
+    });
+    formState.setFalse();
+    form.reset({}, { keepValues: false });
+    onClose();
   };
 
   const onSubmitUpdate = (values) => {
     // call the update order api
+    toast("Order has been created", {
+      description: `${values.username} has been created successfully.`,
+      important: true,
+      action: {
+        label: "View",
+        onClick: () => console.log("View"),
+      },
+    });
+    formState.setFalse();
+    form.reset({}, { keepValues: false });
+    onClose();
   };
 
   const onSubmit = (values: z.infer<typeof ordersFormSchema>) => {

@@ -26,7 +26,10 @@ const OperationLayout: React.FC<Props> = ({ subsiderMenu, title }) => {
         isSubsiderOpen={isSubsiderOpen}
       />
       <div
-        className={cn(`p-[25px]`, isSubsiderOpen && `w-[calc(100vw-250px)]`)}
+        className={cn(
+          `px-[25px] py-[15px]`,
+          isSubsiderOpen && `w-[calc(100vw-250px)]`
+        )}
       >
         <Outlet />
       </div>
