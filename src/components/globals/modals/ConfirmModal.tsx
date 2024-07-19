@@ -15,6 +15,7 @@ interface Props {
   onConfirm: () => void;
   isDeleting?: boolean;
   confirmButtonScheme?: scheme;
+  confirmButtonText?: string;
 }
 
 const ConfirmModal: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const ConfirmModal: React.FC<Props> = ({
   onConfirm,
   isDeleting,
   confirmButtonScheme = "danger",
+  confirmButtonText = "Confirm",
 }) => {
   return (
     <CommonModal
@@ -47,7 +49,7 @@ const ConfirmModal: React.FC<Props> = ({
             disabled={isDeleting}
           >
             {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Save
+            {confirmButtonText}
           </CommonButton>
         </div>
       }

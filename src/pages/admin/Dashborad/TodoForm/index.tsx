@@ -6,10 +6,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import todoFormSchema from "./todo-form-schema";
+import useBoolean from "@/hooks/useBoolean";
 
 interface Props {}
 
 const TodoForm: React.FC<Props> = () => {
+  const formState = useBoolean();
   const form = useForm<z.infer<typeof todoFormSchema>>({
     resolver: zodResolver(todoFormSchema),
     defaultValues: {
@@ -25,6 +27,9 @@ const TodoForm: React.FC<Props> = () => {
       form={form}
       onSubmit={onSubmit}
       onClose={() => console.log("form modal closed!")}
+      formState={formState}
+      title="Create Todo"
+      subtitle="Fill in the form below to create a new todo."
     >
       <FormInput
         control={form.control}

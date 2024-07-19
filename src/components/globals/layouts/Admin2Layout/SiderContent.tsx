@@ -7,7 +7,7 @@ const SiderContent = () => {
     <div className="flex-1">
       <nav
         className={cn(
-          "flex flex-col justify-start px-2 text-sm font-medium lg:px-1"
+          "flex flex-col justify-start px-2 text-sm font-medium gap-5 lg:px-1"
         )}
       >
         {menus2.map((menu, index) => (

@@ -1,8 +1,5 @@
 import { cn } from "@/lib/utils";
 import SubSiderContent from "./SubSiderContent";
-import useBoolean from "@/hooks/useBoolean";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 type Props = {
   subsiderMenu?: { label: string; link: string; icon: any }[];
@@ -14,11 +11,11 @@ const SubSider = ({ subsiderMenu, title, isSubsiderOpen }: Props) => {
   return (
     <div
       className={cn(
-        `hidden border-r bg-muted/40 md:block h-[100vh] ease-out duration-300 w-[250px]`,
+        `hidden border-r bg-muted/40 md:block h-[calc(100vh-60px)] ease-out duration-300 w-[250px] overflow-y-auto`,
         !isSubsiderOpen && `w-[0px]`
       )}
     >
-      <div className="flex px-5 py-3 h-full max-h-screen flex-col gap-2">
+      <div className="flex px-3 py-3 h-full flex-col gap-2">
         <h4 className="font-semibold">{title}</h4>
         {isSubsiderOpen && <SubSiderContent subsiderMenu={subsiderMenu} />}
       </div>

@@ -10,6 +10,63 @@ import { ordersFormSchema } from "@/schemas/order-form-schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CommonDropdown from "@/components/globals/drop-menus/CommonDropdown";
+import { toast } from "sonner";
+
+export const useOrdersRoot = () => {
+  const formState = useBoolean(false);
+  const deleteModalState = useBoolean(false);
+  const [selected, setSelected] = useState(null);
+
+  const onClose = () => {
+    setSelected(null);
+  };
+
+  const onCreate = () => {
+    formState.setTrue();
+  };
+
+  const onEdit = (row: any) => {
+    setSelected(row);
+    formState.setTrue();
+  };
+
+  const onDelete = (row: any) => {
+    setSelected(row);
+    deleteModalState.setTrue();
+  };
+
+  const onConfirmDelete = () => {
+    toast("Order deleted", {
+      important: true,
+      action: {
+        label: "Close",
+        onClick(event) {
+          event.preventDefault();
+          toast.dismiss();
+        },
+      },
+    });
+    onClose();
+    deleteModalState.setFalse();
+  };
+
+  const onCancelDelete = () => {
+    onClose();
+    deleteModalState.setFalse();
+  };
+
+  return {
+    formState,
+    deleteModalState,
+    selected,
+    onCreate,
+    onEdit,
+    onDelete,
+    onConfirmDelete,
+    onCancelDelete,
+    onClose
+  };
+};
 
 type OrdersListProps = {
   onEdit?: (row: any) => void;

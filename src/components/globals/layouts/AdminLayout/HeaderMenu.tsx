@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import CommonButton from "../../buttons/CommonButton";
 interface Props {}
 
 const HeaderMenu: React.FC<Props> = () => {
@@ -15,7 +16,6 @@ const HeaderMenu: React.FC<Props> = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="secondary"
           size="icon"
           className="rounded-full min-w-10 min-h-10"
         >

@@ -15,14 +15,14 @@ const SiderItem = ({ label, icon, link }: Props) => {
     <Link
       to={link}
       className={cn(
-        "rounded-lg text-muted-foreground transition-all hover:text-primary text-sm py-3 justify-center flex flex-col items-center w-[fit-content] mx-auto w-[70px]",
+        "rounded-lg text-gray-400 transition-all hover:text-gray-100 text-sm py-3 justify-center flex flex-col items-center w-[fit-content] mx-auto w-[65px]",
         {
-          "bg-muted text-primary": isActive,
+          "bg-[#363636] text-[#aaaaaa]": isActive,
         }
       )}
     >
       {icon}
-      <div className="mt-2 text-xs">{label}</div>
+      <div className="mt-1 text-xs">{label}</div>
     </Link>
   );
 };

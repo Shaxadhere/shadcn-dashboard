@@ -12,7 +12,7 @@ const Header = ({}: Props) => {
   return (
     <header
       className={cn(
-        `flex border-b bg-muted/40 px-4 h-[60px] lg:px-5 justify-between absolute items-center top-[0px] w-screen ease-out duration-300 lg:left-[90px] lg:w-[calc(100vw-90px)]`
+        `flex border-b bg-muted/40 px-4 h-[60px] lg:px-5 justify-between absolute items-center top-[0px] w-screen ease-out duration-300 lg:left-[80px] lg:w-[calc(100vw-80px)]`
       )}
     >
       <SiderDrawer />
