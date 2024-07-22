@@ -1,3 +1,6 @@
 export const STORAGE = {
   TOKEN: "TOKEN",
+  USER: "USER",
+  APP: "APP",
+  AUTHENTICATION: "AUTHENTICATION",
 };

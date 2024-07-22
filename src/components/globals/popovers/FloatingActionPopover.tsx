@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
 import { FamilyButton } from "@/components/family-button";
@@ -25,6 +25,7 @@ const getPlacementPosition = (placement: placement) => {
 
 const FloatingActionPopover = () => {
   const [placement, setPlacement] = useState<placement>("bottom-right");
+  const floatingRef = useRef<HTMLDivElement>(null);
 
   const onDragEnd = (event: any) => {
     const { clientX: x, clientY: y } = event;
@@ -42,12 +43,22 @@ const FloatingActionPopover = () => {
       }
     }
   };
+
+  const onDrag = (event: any) => {
+    //get mouse location and set the position of the floating action button via ref.current.style
+    // const { clientX: x, clientY: y } = event;
+    // floatingRef.current.style.left = `${x}px`;
+    // floatingRef.current.style.top = `${y}px`;
+  };
+
   return (
     <div className=" w-full h-full min-h-[240px]">
       <div
         onDragEnd={onDragEnd}
+        onDrag={onDrag}
         draggable
         className={cn("fixed", getPlacementPosition(placement))}
+        ref={floatingRef}
       >
         <FamilyButton>
           <OgImageSection />

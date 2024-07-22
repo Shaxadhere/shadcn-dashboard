@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import CommonDropdown from "@/components/globals/drop-menus/CommonDropdown";
 import { toast } from "sonner";
 import useURLState from "@/hooks/useURLState";
+import { useBoundStore } from "@/store";
 
 export const useOrdersRoot = () => {
   const formState = useBoolean(false);
@@ -178,7 +179,13 @@ type OrdersFormProps = {
   onClose: () => void;
 };
 
+type BoundStoreType = { setLoading: any; app: any };
+
 export const useOrderForm = ({ formState, data, onClose }: OrdersFormProps) => {
+  const { setLoading, loading } = useBoundStore((state: BoundStoreType) => ({
+    setLoading: state?.setLoading,
+    loading: state?.app?.loading,
+  }));
   const form = useForm<z.infer<typeof ordersFormSchema>>({
     resolver: zodResolver(ordersFormSchema),
     defaultValues: {
@@ -201,6 +208,10 @@ export const useOrderForm = ({ formState, data, onClose }: OrdersFormProps) => {
     formState.setFalse();
     form.reset({}, { keepValues: false });
     onClose();
+
+    // if (loading < 100) {
+    //   setLoading(loading + 10);
+    // }
   };
 
   const onSubmitUpdate = (values) => {
