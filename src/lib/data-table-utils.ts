@@ -1,4 +1,5 @@
 export const parseFilters = (input) => {
+  if(!input) return [];
   const result = [];
   const pairs = input.split("&");
 
