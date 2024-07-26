@@ -1,7 +1,7 @@
 import axios from "axios";
 import { PostParams } from "./types";
 import { STORAGE } from "@/constants/storage";
-import { CONTENT_TYPES } from "@/constants/apiBase";
+import { CONTENT_TYPES } from "@/constants/api-base";
 import { getRequestUrl } from "../url-utils";
 
 const Post = async ({

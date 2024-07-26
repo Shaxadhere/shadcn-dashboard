@@ -19,6 +19,7 @@ interface Props {
   label?: string;
   count?: number;
   hint?: string;
+  isRequired?: boolean;
 }
 
 const FormPinInput: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const FormPinInput: React.FC<Props> = ({
   label,
   count = 6,
   hint,
+  isRequired,
 }) => {
   return (
     <FormField
@@ -34,12 +36,15 @@ const FormPinInput: React.FC<Props> = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel>
+            {label}
+            {isRequired && <span className="text-red-500">*</span>}
+          </FormLabel>
           <FormControl>
-            <InputOTP maxLength={count} {...field}>
-              <InputOTPGroup>
-                {new Array(count).fill(null).map((item, index) => (
-                  <InputOTPSlot index={index} key={index} />
+            <InputOTP maxLength={count + 1} {...field}>
+              <InputOTPGroup className="w-full">
+                {new Array(count + 1).fill(null).map((item, index) => (
+                  <InputOTPSlot className="w-full" index={index} key={index} />
                 ))}
               </InputOTPGroup>
             </InputOTP>

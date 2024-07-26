@@ -1,6 +1,6 @@
 import axios from "axios";
 import { PatchParams } from "./types";
-import { CONTENT_TYPES } from "@/constants/apiBase";
+import { CONTENT_TYPES } from "@/constants/api-base";
 import { getRequestUrl } from "../url-utils";
 
 const Patch = async ({

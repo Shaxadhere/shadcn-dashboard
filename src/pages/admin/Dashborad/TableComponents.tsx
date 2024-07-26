@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import ColumnHeader from "@/components/globals/table/ColumnHeader";
-import { paymentTableData } from "@/constants/dummyData";
+import { paymentTableData } from "@/constants/dummy-data";
 import { Payment } from "@/models/Payment";
 
 export const columns: ColumnDef<Payment>[] = [

@@ -8,17 +8,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import CommonButton from "../../buttons/CommonButton";
+import { useBearStore } from "@/store";
+import { AuthState } from "@/types/state-types";
 interface Props {}
 
 const HeaderMenu: React.FC<Props> = () => {
+  const { setIsAuth } = useBearStore((state: AuthState) => ({
+    setIsAuth: state.setIsAuth,
+  }));
+
+  const onLogout = () => {
+    setIsAuth(false);
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          size="icon"
-          className="rounded-full min-w-10 min-h-10"
-        >
+        <Button size="icon" className="rounded-full min-w-10 min-h-10">
           <CircleUser className="h-6 w-6" />
           <span className="sr-only">Toggle user menu</span>
         </Button>
@@ -29,7 +34,7 @@ const HeaderMenu: React.FC<Props> = () => {
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem onClick={onLogout}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

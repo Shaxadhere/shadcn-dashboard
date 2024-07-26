@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import ColumnHeader from "@/components/globals/table/ColumnHeader";
-import { paymentTableData } from "@/constants/dummyData";
+import { paymentTableData } from "@/constants/dummy-data";
 import useDebouce from "@/hooks/useDebouce";
 import { Order } from "@/models";
 import useBoolean from "@/hooks/useBoolean";

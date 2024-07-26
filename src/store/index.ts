@@ -19,6 +19,7 @@ export const useBearStore = create(
       setIsAuth: (payload: Boolean) => set({ isAuth: payload }),
     }),
     {
+      //using local storage to persist auth state
       name: STORAGE.AUTHENTICATION,
       storage: createJSONStorage(() => localStorage),
     }

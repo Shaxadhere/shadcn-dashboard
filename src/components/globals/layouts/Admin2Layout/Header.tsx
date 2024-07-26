@@ -5,7 +5,7 @@ import ComboSearchInput from "../../popovers/ComboSearchInput";
 import AppBreadcrumbs from "./AppBreadcrumbs";
 import HeaderMenu from "./HeaderMenu";
 import SiderDrawer from "./SiderDrawer";
-import { headerSearchOptions } from "@/constants/headerSearch";
+import { headerSearchOptions } from "@/constants/header-search";
 
 type Props = {};
 

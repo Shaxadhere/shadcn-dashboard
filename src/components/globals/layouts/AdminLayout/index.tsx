@@ -1,12 +1,22 @@
 import useBoolean from "@/hooks/useBoolean";
 import { cn } from "@/lib/utils";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import GlobalLoader from "../../loaders/GlobalLoader";
 import Header from "./Header";
 import Sider from "./Sider";
+import { useBearStore } from "@/store";
+import { AuthState } from "@/types/state-types";
 
 const AdminLayout = () => {
+  const { isAuth } = useBearStore((state: AuthState) => ({
+    isAuth: state.isAuth,
+  }));
   const { toggle: toggleSider, value: isSiderOpen } = useBoolean(true);
+
+  //if user is not authenticated, redirect to login
+  if (!isAuth) {
+    return <Navigate to="/auth/login" replace />;
+  }
   return (
     <div className={cn("min-h-screen w-full")}>
       <GlobalLoader percentage={0} />
