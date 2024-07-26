@@ -11,7 +11,6 @@ const GlobalLoader: React.FC<Props> = () => {
   const { loading } = useBoundStore((state: BoundStoreType) => ({
     loading: state?.app?.loading,
   }));
-  console.log(loading,"loadingloading")
   if (loading === 100 || loading === 0) return null;
   return (
     <div className={"loader w-screen h-[3px] z-10 absolute top-[0px]"}>

@@ -25,7 +25,6 @@ export function Pagination<TData>({
   table,
   onQueryChange,
 }: DataTablePaginationProps<TData>) {
-  console.log(table.getState().pagination,"pagination")
   return (
     <div className="flex items-center justify-between px-2 py-2">
       <div className="flex-1 text-sm text-muted-foreground">

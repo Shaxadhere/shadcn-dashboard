@@ -160,7 +160,7 @@ export default function ToolbarPlugin() {
           size="sm"
           pressed={isBold}
           onPressedChange={(pressed) => {
-            console.log(editor.getEditorState().toJSON());
+            console.info(editor.getEditorState().toJSON());
             editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
             setIsBold(pressed);
           }}

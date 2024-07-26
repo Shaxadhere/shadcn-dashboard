@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import ColumnHeader from "@/components/globals/table/ColumnHeader";
 import { paymentTableData } from "@/constants/dummy-data";
@@ -13,6 +13,7 @@ import CommonDropdown from "@/components/globals/drop-menus/CommonDropdown";
 import { toast } from "sonner";
 import useURLState from "@/hooks/useURLState";
 import { useBoundStore } from "@/store";
+import { initListingQueryObject, queryToObject } from "@/lib/query-utils";
 
 export const useOrdersRoot = () => {
   const formState = useBoolean(false);
@@ -77,11 +78,14 @@ type OrdersListProps = {
 
 export const useOrdersList = ({ onDelete, onEdit }: OrdersListProps) => {
   const [data, setData] = useState<Order[]>([]);
-  const [query, setQuery] = useURLState({
-    pageNumber: 1,
-    pageSize: 10,
-  });
-  const deboucedQuery = useDebouce(query);
+  const [query, setQuery] = useURLState(initListingQueryObject());
+  const serverQuery = useMemo(
+    () => queryToObject({ injectQuery: query }),
+    [query]
+  );
+  const deboucedQuery = useDebouce(serverQuery);
+
+  console.log(query, deboucedQuery, "QUERIES");
 
   async function getData(): Promise<Order[]> {
     return paymentTableData as Order[];

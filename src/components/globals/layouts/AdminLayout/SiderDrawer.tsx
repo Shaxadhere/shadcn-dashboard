@@ -81,7 +81,7 @@ const SiderDrawer: React.FC<Props> = ({ toggleSider, isSiderOpen }) => {
             description=" Unlock all features and get unlimited access to our support
                 team."
             actionTitle="Upgrade"
-            action={() => console.log("upgrade")}
+            action={() => console.info("upgrade")}
           />
         </div>
       </SheetContent>

@@ -26,3 +26,54 @@ export const objectToQuery = ({ params, useArray }: ObjectToQueryType) => {
   });
   return paramsArr.join("&");
 };
+
+type QueryToObjectType = {
+  query?: string;
+  injectQuery?: any;
+  defaultQuery?: any;
+};
+
+export const queryToObject = (options?: QueryToObjectType) => {
+  const {
+    query = window.location.search,
+    injectQuery = {},
+    defaultQuery = {},
+  } = options;
+  //getting query from url
+  const urlSearchParams = new URLSearchParams(query);
+  let params = Object.fromEntries(urlSearchParams.entries());
+
+  //add default query on top of the query so
+  //that default query can be overridden
+  if (Object.keys(defaultQuery).length > 0) {
+    params = { ...defaultQuery, ...params };
+  }
+  //add inject query on bottom of the query so
+  //that inject query can override the query
+  if (Object.keys(injectQuery).length > 0) {
+    params = { ...params, ...injectQuery };
+  }
+  //convert filters to array of objects
+  if (params.filters) {
+    //i.e status=all,active,inactive&type=paid,unpaid
+    let _filters = [];
+    params.filters.split(",").forEach((filter) => {
+      const filterArr = filter.split("=");
+      if (!filterArr[1] || !filterArr[0]) return;
+      _filters.push({
+        [filterArr[0]]: filterArr[1],
+      });
+    });
+    //@ts-ignore
+    params.filters = _filters;
+  }
+  return params;
+};
+
+export const initListingQueryObject = (injectQuery?: any) => {
+  return {
+    pageNumber: 1,
+    pageSize: 10,
+    ...injectQuery,
+  };
+};

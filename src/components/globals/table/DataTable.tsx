@@ -26,6 +26,7 @@ import TableEmpty from "./TableEmpty";
 import TableFilters from "./TableFilters";
 import { objectToQuery } from "@/lib/query-utils";
 import { onColumnFilterChange, onSortingChange } from "@/lib/table-utils";
+import { parseFilters } from "@/lib/data-table-utils";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,8 +49,12 @@ const DataTable = <TData, TValue>({
   totalRecords,
   filters,
 }: DataTableProps<TData, TValue>) => {
+  //initializing data
+  const defaultFilters = parseFilters(query?.filters);
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
+    defaultFilters ? defaultFilters : []
+  );
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 

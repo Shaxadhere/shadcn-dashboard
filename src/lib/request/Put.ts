@@ -2,6 +2,7 @@ import axios from "axios";
 import { PutParams } from "./types";
 import { CONTENT_TYPES } from "@/constants/api-base";
 import { getRequestUrl } from "../url-utils";
+import { toast } from "sonner";
 
 const Put = async ({
   url,
@@ -9,6 +10,8 @@ const Put = async ({
   toastError,
   toastMessage,
   contentType = CONTENT_TYPES.JSON,
+  successAction,
+  errorAction,
 }: PutParams) => {
   try {
     const token = localStorage.getItem("token");
@@ -18,12 +21,24 @@ const Put = async ({
     };
     const response = await axios.put(getRequestUrl(url), body, { headers });
     if (toastMessage) {
-      console.info("Data updated successfully");
+      const message = "your message"; //extract message from response
+      toast("Great!", {
+        description: message,
+        important: true,
+        action: successAction,
+      });
+      console.info("Data fetched successfully");
     }
     return response.data;
   } catch (error) {
     if (toastError) {
-      console.error("Error: ", error.message);
+      const message = "your error"; //extract error from response
+      toast("Error!", {
+        description: message,
+        important: true,
+        action: errorAction,
+      });
+      console.warn("Error: ", error.message);
     }
     throw error;
   }

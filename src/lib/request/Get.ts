@@ -3,8 +3,16 @@ import { GetParams } from "./types";
 import { STORAGE } from "@/constants/storage";
 import { CONTENT_TYPES } from "@/constants/api-base";
 import { getRequestUrl } from "../url-utils";
+import { toast } from "sonner";
 
-const Get = async ({ url, query, toastError, toastMessage }: GetParams) => {
+const Get = async ({
+  url,
+  query,
+  toastError,
+  toastMessage,
+  successAction,
+  errorAction,
+}: GetParams) => {
   try {
     const token = localStorage.getItem(STORAGE.TOKEN);
     const response = await axios.get(getRequestUrl(url), {
@@ -15,12 +23,24 @@ const Get = async ({ url, query, toastError, toastMessage }: GetParams) => {
       params: query,
     });
     if (toastMessage) {
-      console.log("Data fetched successfully");
+      const message = "your message"; //extract message from response
+      toast("Great!", {
+        description: message,
+        important: true,
+        action: successAction,
+      });
+      console.info("Data fetched successfully");
     }
     return response.data;
   } catch (error) {
     if (toastError) {
-      console.log("Error: ", error.message);
+      const message = "your error"; //extract error from response
+      toast("Error!", {
+        description: message,
+        important: true,
+        action: errorAction,
+      });
+      console.warn("Error: ", error.message);
     }
     throw error;
   }

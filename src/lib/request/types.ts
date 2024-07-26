@@ -1,36 +1,31 @@
-export interface GetParams {
+export interface RequestParams {
+  successAction?: {
+    label: string;
+    onClick: () => void;
+  };
+  errorAction?: {
+    label: string;
+    onClick: () => void;
+  };
+  toastError?: boolean;
+  toastMessage?: boolean;
+  contentType?: string;
   url: string;
+}
+export interface GetParams extends RequestParams {
   query?: any;
-  toastError?: boolean;
-  toastMessage?: boolean;
 }
 
-export interface PostParams {
-  url: string;
+export interface PostParams extends RequestParams {
   body: any;
-  toastError?: boolean;
-  toastMessage?: boolean;
-  contentType?: string;
 }
 
-export interface PutParams {
-  url: string;
+export interface PutParams extends RequestParams {
   body: any;
-  toastError?: boolean;
-  toastMessage?: boolean;
-  contentType?: string;
 }
 
-export interface DeleteParams {
-  url: string;
-  toastError?: boolean;
-  toastMessage?: boolean;
-}
+export interface DeleteParams extends RequestParams {}
 
-export interface PatchParams {
-  url: string;
+export interface PatchParams extends RequestParams {
   body: any;
-  toastError?: boolean;
-  toastMessage?: boolean;
-  contentType?: string;
 }

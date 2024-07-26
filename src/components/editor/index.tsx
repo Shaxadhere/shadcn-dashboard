@@ -73,7 +73,7 @@ const Editor: React.FC = ({
 
       const htmlString = $generateHtmlFromNodes(editor);
 
-      console.log(htmlString, "asjdhajkshdkashdkjasd");
+      console.info(htmlString, "onEditorStateChange");
       onChange && onChange(root.__cachedText || "");
     });
   };

@@ -1,8 +1,5 @@
-import OperationLayout from "@/components/globals/layouts/OperationLayout";
-import { ordersSubmenu } from "@/constants/sub-menus";
 import Dashboard from "@/pages/admin/Dashborad";
 import Orders from "@/pages/admin/Orders";
-import Invoices from "@/pages/admin/Orders/Invoices";
 
 const adminRoutes = [
   {
@@ -11,17 +8,7 @@ const adminRoutes = [
   },
   {
     path: "orders",
-    element: <OperationLayout title="Orders" subsiderMenu={ordersSubmenu} />,
-    children: [
-      {
-        index: true,
-        element: <Orders />,
-      },
-      {
-        path: "invoices",
-        element: <Invoices />,
-      },
-    ],
+    element: <Orders />,
   },
   {
     path: "products",
